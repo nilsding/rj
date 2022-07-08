@@ -49,5 +49,5 @@ bool MRuby::eval(const std::string_view &command)
 {
     m_lastval = mrb_load_nstring_cxt(m_state, command.data(), command.length(), m_context);
 
-    return exc() != 0;
+    return exc() == 0;
 }

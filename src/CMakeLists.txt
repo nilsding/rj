@@ -1,6 +1,7 @@
 configure_file(config.h.in config.h)
 
 set(PROJECT_SOURCES
+    expressionwrapper.cpp
     main.cpp
     mruby++.cpp
 )

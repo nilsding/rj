@@ -1,0 +1,17 @@
+# Doxyfile 1.9.3
+
+PROJECT_NAME           = "rq"
+PROJECT_BRIEF          = "jq, but with Ruby expressions"
+
+OUTPUT_DIRECTORY       = doc
+INPUT                  = . src
+RECURSIVE              = NO
+EXCLUDE                = build
+USE_MDFILE_AS_MAINPAGE = README.md
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+GENERATE_TREEVIEW      = YES
+FULL_SIDEBAR           = NO
+OBFUSCATE_EMAILS       = YES
+GENERATE_LATEX         = NO
