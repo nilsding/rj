@@ -1,0 +1,5 @@
+reading from stdin
+running 1 expressions
+----> item = (item["location"])
+printing item
+"Europe"

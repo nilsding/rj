@@ -40,6 +40,9 @@ cmake --preset dev
 # compile it
 cmake --build --preset dev
 
+# test it
+ruby ./test/rq_test.rb
+
 # run it
 ./build/src/rq
 ```

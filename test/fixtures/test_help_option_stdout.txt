@@ -1,0 +1,3 @@
+Usage: rq [options] [--] [EXPRESSION...]
+  -v              print the version number
+  -h              show this message

@@ -1,0 +1,13 @@
+reading from stdin
+running 0 expressions
+printing item
+{
+  "name": "Jyrki",
+  "location": "Europe",
+  "languages": [
+    "C++",
+    "Crystal",
+    "Ruby",
+    "Turbo Pascal"
+  ]
+}

@@ -1,0 +1,10 @@
+reading from stdin
+running 1 expressions
+----> item = (item["languages"])
+printing item
+[
+  "C++",
+  "Crystal",
+  "Ruby",
+  "Turbo Pascal"
+]

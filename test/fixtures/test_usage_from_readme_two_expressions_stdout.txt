@@ -1,0 +1,9 @@
+reading from stdin
+running 2 expressions
+----> item = (item.first)
+----> item = ({ one: item["foo"], two: item.dig("bar", "name") })
+printing item
+{
+  "one": true,
+  "two": "Bugs"
+}

@@ -10,6 +10,15 @@ add_executable(rq
     ${PROJECT_SOURCES}
 )
 
+add_test(
+  NAME rq_test
+  COMMAND ruby ${CMAKE_SOURCE_DIR}/test/rq_test.rb
+)
+set_property(
+  TEST rq_test
+  PROPERTY ENVIRONMENT RQ_BIN=$<TARGET_FILE:rq>
+)
+
 target_link_libraries(rq PRIVATE
   ${MRUBY_LIBS}
 )
