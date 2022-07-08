@@ -22,3 +22,8 @@ set_property(
 target_link_libraries(rq PRIVATE
   ${MRUBY_LIBS}
 )
+
+install(
+  TARGETS rq
+  RUNTIME DESTINATION bin
+)
