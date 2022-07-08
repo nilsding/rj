@@ -1,3 +1,0 @@
-reading from stdin
-running 1 expressions
-----> item = (item.unknown_method)

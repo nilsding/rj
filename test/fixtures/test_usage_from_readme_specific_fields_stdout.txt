@@ -1,7 +1,3 @@
-reading from stdin
-running 1 expressions
-----> item = (item.first.slice("foo", "bar"))
-printing item
 {
   "foo": true,
   "bar": {

@@ -1,7 +1,3 @@
-reading from stdin
-running 1 expressions
-----> item = ({ location: item["location"], short_location: item["location"].upcase[0..1] })
-printing item
 {
   "location": "Europe",
   "short_location": "EU"

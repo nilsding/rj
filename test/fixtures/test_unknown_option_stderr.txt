@@ -1,5 +1,6 @@
 rq: invalid option -U
 
 Usage: rq [options] [--] [EXPRESSION...]
+  -d              extra debug output
   -v              print the version number
   -h              show this message

@@ -8,6 +8,8 @@
 #include "expressionwrapper.h"
 #include "mruby++.h"
 
+static std::ostream* Debug = &std::cerr;
+
 //! \brief Parses and represents command line arguments.
 struct ProgramOptions
 {
@@ -15,6 +17,8 @@ struct ProgramOptions
     //! \exception std::runtime_error when command line argument parsing fails.
     ProgramOptions(int argc, char** argv);
 
+    //! `-d`: \c true if you want debug output
+    bool debug = false;
     //! `-h`: \c true if the program should exit with its usage info.
     bool help = false;
     //! `-v`: \c true if the program should exit with its version info.
@@ -73,6 +77,9 @@ ProgramOptions::ProgramOptions(int argc, char** argv)
             {
                 switch (*argit)
                 {
+                case 'd':
+                    debug = true;
+                    break;
                 case 'h':
                     help = true;
                     break;
@@ -107,15 +114,26 @@ void print_version(std::ostream& stream = std::cout)
 void print_usage(std::ostream& stream = std::cout)
 {
     stream << R"(Usage: rq [options] [--] [EXPRESSION...]
+  -d              extra debug output
   -v              print the version number
   -h              show this message)" << std::endl;
 }
+
+class NullBuffer : public std::streambuf
+{
+public:
+    int overflow(int c) { return c; }
+};
 
 //! \brief Main entry point.
 //! \param argc Number of arguments.
 //! \param argv List of arguments.
 int main(int argc, char** argv)
 {
+    // set up null buffer for debug logging
+    NullBuffer null_buffer;
+    std::ostream null_stream(&null_buffer);
+
     try
     {
         ProgramOptions opts(argc, argv);
@@ -131,9 +149,14 @@ int main(int argc, char** argv)
             return EXIT_SUCCESS;
         }
 
+        if (!opts.debug)
+        {
+            Debug = &null_stream;
+        }
+
         MRuby rb;
 
-        std::cout << "reading from stdin" << std::endl;
+        *Debug << "reading from stdin" << std::endl;
         if (!rb.eval("item = JSON.parse(STDIN.read)"))
         {
             std::cerr << "rq: read from stdin failed:" << std::endl;
@@ -142,11 +165,11 @@ int main(int argc, char** argv)
             return EXIT_FAILURE;
         }
 
-        std::cout << "running " << opts.expressions.size() << " expressions" << std::endl;
+        *Debug << "running " << opts.expressions.size() << " expressions" << std::endl;
         for (const auto& expr : opts.expressions)
         {
             auto wrapped_expr = ExpressionWrapper::wrap(expr);
-            std::cout << "----> " << wrapped_expr << std::endl;
+            *Debug << "----> " << wrapped_expr << std::endl;
             if (!rb.eval(wrapped_expr))
             {
                 std::cerr << "rq: expression " << expr << " failed to run:" << std::endl;
@@ -156,7 +179,7 @@ int main(int argc, char** argv)
             }
         }
 
-        std::cout << "printing item" << std::endl;
+        *Debug << "printing item" << std::endl;
         if (!rb.eval("puts JSON.generate(item, pretty_print: true, indent_width: 2)"))
         {
             std::cerr << "rq: printing item failed" << std::endl;

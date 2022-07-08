@@ -1,7 +1,3 @@
-reading from stdin
-running 1 expressions
-----> item = (item[2])
-printing item
 {
   "id": 3,
   "foo": true,

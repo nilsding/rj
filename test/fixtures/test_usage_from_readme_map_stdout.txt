@@ -1,7 +1,3 @@
-reading from stdin
-running 1 expressions
-----> item = (item.map { |item| { one: item["foo"], two: item.dig("bar", "name") } })
-printing item
 [
   {
     "one": true,
