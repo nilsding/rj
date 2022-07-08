@@ -4,6 +4,39 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(CMakeDependentOption)
 include(FeatureSummary)
 
+# fetch mruby from source
+include(ExternalProject)
+ExternalProject_Add(
+  mruby
+  URL https://github.com/mruby/mruby/archive/3.1.0.tar.gz
+  URL_HASH SHA512=b3699587689709b7411105ef468c28a6d89941dea356e6b3272b6ba1f69dc2d59e9c1ebc56c55208adc8b2ba878e21c8961ddd4603781748070fc78b6c2bbdb2
+  CONFIGURE_COMMAND
+    ""
+  BUILD_COMMAND
+    rake MRUBY_CONFIG=${CMAKE_CURRENT_SOURCE_DIR}/mruby_config.rb INSTALL_DIR=<INSTALL_DIR> MRUBY_BUILD_DIR=<INSTALL_DIR>/build
+  BUILD_IN_SOURCE true
+  INSTALL_COMMAND
+    ""
+)
+ExternalProject_Get_Property(mruby SOURCE_DIR INSTALL_DIR)
+ExternalProject_Get_Property(mruby INSTALL_DIR)
+set(MRUBY_SOURCE_DIR ${SOURCE_DIR})
+set(MRUBY_INSTALL_DIR ${INSTALL_DIR})
+set(MRUBY_BUILD_DIR ${MRUBY_INSTALL_DIR}/build/host)
+set(MRUBY_LIBS
+  ${MRUBY_BUILD_DIR}/lib/libmruby.a
+)
+set(MRUBY_INCLUDE_DIRS
+  ${MRUBY_SOURCE_DIR}/include
+  ${MRUBY_BUILD_DIR}/include
+)
+include_directories(${MRUBY_INCLUDE_DIRS})
+add_compile_definitions(
+  MRB_USE_CXX_ABI
+  MRB_USE_CXX_EXCEPTION
+)
+
+# configure the rest of our project
 project(rq VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

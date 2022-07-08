@@ -18,6 +18,7 @@ exclude:
 - \*.json
 - Makefile
 - LICENCE
+- \*.lock
 hyperlink_all: false
 line_numbers: false
 locale:

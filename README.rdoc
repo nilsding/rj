@@ -26,7 +26,10 @@ probably something like:
 
 == Requirements
 
-- CMake (for building)
+for building:
+- CMake
+- Ruby 2.5 or later (e.g. `ruby` or `jruby`)
+- {whatever else mruby 3.1.0 needs}[https://github.com/mruby/mruby/blob/3.1.0/doc/guides/compile.md#prerequisites] :^)
 
 == Building
 

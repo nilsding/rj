@@ -5,6 +5,8 @@
 #include <string_view>
 #include <vector>
 
+#include "mruby++.h"
+
 struct ProgramOptions
 {
     ProgramOptions(int argc, char** argv);
@@ -84,7 +86,7 @@ ProgramOptions::ProgramOptions(int argc, char** argv)
 
 void print_version(std::ostream& stream = std::cout)
 {
-    stream << "rq " << PROJECT_VERSION << std::endl;
+    stream << "rq " << PROJECT_VERSION << " (mruby " << MRUBY_VERSION << ")" << std::endl;
 }
 
 void print_usage(std::ostream& stream = std::cout)
@@ -111,10 +113,18 @@ int main(int argc, char** argv)
             return EXIT_SUCCESS;
         }
 
-        std::cout << "Got " << opts.expressions.size() << " expressions:" << std::endl;
+        MRuby rb;
+
+        std::cout << "running " << opts.expressions.size() << " expressions" << std::endl;
         for (const auto& expr : opts.expressions)
         {
-            std::cout << "- " << expr << std::endl;
+            if (rb.eval(expr))
+            {
+                std::cerr << "\033[0mrq: expression " << expr << " failed to run:" << std::endl;
+                rb.print_error();
+
+                return EXIT_FAILURE;
+            }
         }
     }
     catch (const std::exception &ex)
