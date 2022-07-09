@@ -10,6 +10,8 @@ add_executable(rq
     ${PROJECT_SOURCES}
 )
 
+add_dependencies(rq mruby)
+
 add_test(
   NAME rq_test
   COMMAND ruby ${CMAKE_SOURCE_DIR}/test/rq_test.rb
