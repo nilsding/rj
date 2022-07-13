@@ -1,9 +1,7 @@
 class Rq
   # Returns `true` if the final output should be compact, `false` if it should
   # be pretty printed.
-  def self.compact?
-    @compact
-  end
+  def self.compact? = @compact
 
   # Prints the result of `item`.
   def self.print_result(item)
@@ -16,9 +14,8 @@ class Rq
   end
 
   # Method that returns whatever debug info I like.
-  def self.__debug_info
-    {
-      compact: @compact
-    }
-  end
+  def self.__debug_info = {
+    compact: @compact,
+    ruby: MRUBY_DESCRIPTION,
+  }
 end
