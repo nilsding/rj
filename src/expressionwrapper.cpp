@@ -1,6 +1,6 @@
 #include "expressionwrapper.h"
 
-std::string ExpressionWrapper::wrap(const std::string_view& expr)
+std::string ExpressionWrapper::wrap(std::string_view expr)
 {
     if (expr.length() == 0)
     {

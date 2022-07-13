@@ -18,5 +18,5 @@ public:
     //! `item`.
     //! \param expr Ruby expression to wrap, e.g. (`.first`).
     //! \return The wrapped Ruby expression (e.g. `item = (item.first)`).
-    static std::string wrap(const std::string_view& expr);
+    static std::string wrap(std::string_view expr);
 };

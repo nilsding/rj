@@ -45,7 +45,7 @@ void MRuby::print_error()
     mrb_print_error(m_state);
 }
 
-bool MRuby::eval(const std::string_view &command)
+bool MRuby::eval(std::string_view command)
 {
     m_lastval = mrb_load_nstring_cxt(m_state, command.data(), command.length(), m_context);
 

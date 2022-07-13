@@ -40,7 +40,7 @@ public:
     //! evaluate another expression afterwards.
     //! \sa MRuby::print_error
     //! \return \c true if the code was run successfully, \c false otherwise.
-    bool eval(const std::string_view& command);
+    bool eval(std::string_view command);
 
 private:
     mrb_state* m_state = nullptr;
