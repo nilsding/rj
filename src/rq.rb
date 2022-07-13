@@ -3,6 +3,9 @@ class Rq
   # be pretty printed.
   def self.compact? = @compact
 
+  # Returns `true` if the debug flag (`-d`) was enabled.
+  def self.debug? = @debug
+
   # Prints the result of `item`.
   def self.print_result(item)
     json_generate_opts = {
@@ -16,6 +19,7 @@ class Rq
   # Method that returns whatever debug info I like.
   def self.__debug_info = {
     compact: @compact,
+    debug: @debug,
     ruby: MRUBY_DESCRIPTION,
   }
 end

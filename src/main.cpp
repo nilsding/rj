@@ -169,6 +169,7 @@ int main(int argc, char** argv)
         rb.load_irep(mrbc_rq);
         MRuby::Class* rq_class = rb.class_get("Rq");
         rq_class->ivar_set("@compact", mrb_bool_value(opts.compact));
+        rq_class->ivar_set("@debug", mrb_bool_value(opts.debug));
 
         *Debug << "reading from stdin" << std::endl;
         if (!rb.eval("item = JSON.parse(STDIN.read)"))

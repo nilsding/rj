@@ -1,0 +1,5 @@
+loading Rq class
+reading from stdin
+running 1 expressions
+----> item = (Rq.__debug_info)
+printing item

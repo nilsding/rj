@@ -211,6 +211,37 @@ class RqTest < ::Minitest::Test
       stdin:  "{}",
       stdout: :from_fixture
 
+  rq_test! :internals_debug,
+      argv: [
+        '-d',
+        '--',
+        'Rq.__debug_info',
+      ],
+      stdin:  "{}",
+      stdout: :from_fixture,
+      stderr: :from_fixture
+
+  rq_test! :internals_compact_debug,
+      argv: [
+        '-c',
+        '-d',
+        '--',
+        'Rq.__debug_info',
+      ],
+      stdin:  "{}",
+      stdout: :from_fixture,
+      stderr: :test_internals_debug
+
+  rq_test! :internals_compact_debug_combined,
+      argv: [
+        '-cd',
+        '--',
+        'Rq.__debug_info',
+      ],
+      stdin:  "{}",
+      stdout: :test_internals_compact_debug,
+      stderr: :test_internals_debug
+
   rq_test! :help_option,
       argv: ["-h"],
       stdout: :from_fixture
