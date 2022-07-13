@@ -18,15 +18,6 @@ add_executable(rq
 
 add_dependencies(rq mruby)
 
-add_test(
-  NAME rq_test
-  COMMAND ruby ${CMAKE_SOURCE_DIR}/test/rq_test.rb
-)
-set_property(
-  TEST rq_test
-  PROPERTY ENVIRONMENT RQ_BIN=$<TARGET_FILE:rq>
-)
-
 target_link_libraries(rq PRIVATE
   mruby++
 )
@@ -35,3 +26,22 @@ install(
   TARGETS rq
   RUNTIME DESTINATION bin
 )
+
+# add each test individually
+file(GLOB test_files ${CMAKE_SOURCE_DIR}/test/*.rb)
+foreach(test_f ${test_files})
+  get_filename_component(test_name ${test_f} NAME_WE)
+  # ignore rq_test test suite, as it just tests everything
+  if (${test_name} STREQUAL rq_test)
+    continue()
+  endif()
+
+  add_test(
+    NAME ${test_name}
+    COMMAND ruby ${test_f}
+  )
+  set_property(
+    TEST ${test_name}
+    PROPERTY ENVIRONMENT RQ_BIN=$<TARGET_FILE:rq>
+  )
+endforeach()
