@@ -1,2 +1,2 @@
-rq: expression -d failed to run:
+rq: expression '-d' failed to run:
 (unknown):0: undefined method 'd' (NoMethodError)

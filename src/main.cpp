@@ -1,5 +1,6 @@
 #include "config.h"
 
+#include <iomanip>
 #include <iostream>
 #include <iterator>
 #include <string_view>
@@ -172,7 +173,7 @@ int main(int argc, char** argv)
             *Debug << "----> " << wrapped_expr << std::endl;
             if (!rb.eval(wrapped_expr))
             {
-                std::cerr << "rq: expression " << expr << " failed to run:" << std::endl;
+                std::cerr << "rq: expression " << std::quoted(expr, '\'') << " failed to run:" << std::endl;
                 rb.print_error();
 
                 return EXIT_FAILURE;
