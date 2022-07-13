@@ -1,3 +1,4 @@
+loading Rq class
 reading from stdin
 running 2 expressions
 ----> item = (item.first)

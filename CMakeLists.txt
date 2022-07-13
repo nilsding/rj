@@ -35,6 +35,29 @@ add_compile_definitions(
   MRB_USE_CXX_ABI
   MRB_USE_CXX_EXCEPTION
 )
+# not using `find_program` for this one as mrbc might not yet exist
+set(MRBC_EXECUTABLE "${MRUBY_INSTALL_DIR}/mrbc")
+
+# precompiles .rb files using the freshly built mrbc
+function(add_mrbc out_var)
+  set(result)
+  file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/mrbc")
+  foreach(in_f ${ARGN})
+    get_filename_component(basename ${in_f} NAME_WE)
+    set(out_f "${CMAKE_CURRENT_BINARY_DIR}/mrbc/${in_f}.cpp")
+    set(in_f "${CMAKE_CURRENT_SOURCE_DIR}/${in_f}")
+    file(RELATIVE_PATH out_f_comment ${CMAKE_BINARY_DIR} ${out_f})
+    add_custom_command(OUTPUT ${out_f}
+      COMMAND ${MRBC_EXECUTABLE} -B mrbc_${basename} -o ${out_f} ${in_f}
+      DEPENDS mruby ${in_f}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+      COMMENT "Generating mruby bytecode ${out_f_comment}"
+      VERBATIM
+    )
+    list(APPEND result ${out_f})
+  endforeach()
+  set(${out_var} "${result}" PARENT_SCOPE)
+endfunction()
 
 # configure the rest of our project
 project(rq VERSION 0.1.0 LANGUAGES CXX)

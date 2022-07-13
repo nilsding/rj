@@ -1,7 +1,7 @@
 #pragma once
 
-#include "mruby.h"
-#include "mruby/compile.h"
+#include <mruby.h>
+#include <mruby/compile.h>
 
 #include <string_view>
 
@@ -46,6 +46,15 @@ public:
     //! \sa MRuby::print_error
     //! \return \c true if the code was run successfully, \c false otherwise.
     bool eval(std::string_view command);
+
+    //! \brief Loads the mruby binary at \a buffer.
+    mrb_value load_irep(const uint8_t buffer[]);
+
+    //! \brief Returns the class named \a name.
+    Class* class_get(std::string_view name);
+
+    //! \brief Creates a symbol from \a name.
+    mrb_sym symbol(std::string_view name);
 
 private:
     mrb_state* m_state = nullptr;

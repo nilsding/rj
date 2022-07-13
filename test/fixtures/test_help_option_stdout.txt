@@ -1,4 +1,5 @@
 Usage: rq [options] [--] [EXPRESSION...]
+  -c              compact the JSON instead of pretty printing it
   -d              extra debug output
   -v              print the version number
   -h              show this message

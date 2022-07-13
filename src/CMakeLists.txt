@@ -3,12 +3,17 @@ configure_file(config.h.in config.h)
 add_subdirectory(mruby++)
 
 set(PROJECT_SOURCES
-    expressionwrapper.cpp
-    main.cpp
+  expressionwrapper.cpp
+  main.cpp
+)
+
+add_mrbc(RUBY_SOURCES
+  rq.rb
 )
 
 add_executable(rq
-    ${PROJECT_SOURCES}
+  ${PROJECT_SOURCES}
+  ${RUBY_SOURCES}
 )
 
 add_dependencies(rq mruby)

@@ -1,4 +1,5 @@
 set(MRUBY++_SOURCES
+  class.cpp
   interpreter.cpp
 )
 

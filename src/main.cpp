@@ -11,6 +11,8 @@
 
 static std::ostream* Debug = &std::cerr;
 
+extern const uint8_t mrbc_rq[];
+
 //! \brief Parses and represents command line arguments.
 struct ProgramOptions
 {
@@ -18,6 +20,8 @@ struct ProgramOptions
     //! \exception std::runtime_error when command line argument parsing fails.
     ProgramOptions(int argc, char** argv);
 
+    //! `-c`: \c true if the JSON should be compacted instead of pretty printed
+    bool compact = false;
     //! `-d`: \c true if you want debug output
     bool debug = false;
     //! `-h`: \c true if the program should exit with its usage info.
@@ -78,6 +82,9 @@ ProgramOptions::ProgramOptions(int argc, char** argv)
             {
                 switch (*argit)
                 {
+                case 'c':
+                    compact = true;
+                    break;
                 case 'd':
                     debug = true;
                     break;
@@ -115,6 +122,7 @@ void print_version(std::ostream& stream = std::cout)
 void print_usage(std::ostream& stream = std::cout)
 {
     stream << R"(Usage: rq [options] [--] [EXPRESSION...]
+  -c              compact the JSON instead of pretty printing it
   -d              extra debug output
   -v              print the version number
   -h              show this message)" << std::endl;
@@ -157,6 +165,11 @@ int main(int argc, char** argv)
 
         MRuby::Interpreter rb;
 
+        *Debug << "loading Rq class" << std::endl;
+        rb.load_irep(mrbc_rq);
+        MRuby::Class* rq_class = rb.class_get("Rq");
+        rq_class->ivar_set("@compact", mrb_bool_value(opts.compact));
+
         *Debug << "reading from stdin" << std::endl;
         if (!rb.eval("item = JSON.parse(STDIN.read)"))
         {
@@ -181,7 +194,7 @@ int main(int argc, char** argv)
         }
 
         *Debug << "printing item" << std::endl;
-        if (!rb.eval("puts JSON.generate(item, pretty_print: true, indent_width: 2)"))
+        if (!rb.eval("Rq.print_result(item)"))
         {
             std::cerr << "rq: printing item failed" << std::endl;
             rb.print_error();

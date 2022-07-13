@@ -187,6 +187,30 @@ class RqTest < ::Minitest::Test
       status: 1,
       stderr: :from_fixture
 
+  rq_test! :compact_option,
+      argv: [
+        '-c',
+      ],
+      stdin:  :basic_array,
+      stdout: :from_fixture
+
+  rq_test! :internals_noflags,
+      argv: [
+        '--',
+        'Rq.__debug_info',
+      ],
+      stdin:  "{}",
+      stdout: :from_fixture
+
+  rq_test! :internals_compact,
+      argv: [
+        '-c',
+        '--',
+        'Rq.__debug_info',
+      ],
+      stdin:  "{}",
+      stdout: :from_fixture
+
   rq_test! :help_option,
       argv: ["-h"],
       stdout: :from_fixture
