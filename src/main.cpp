@@ -155,7 +155,7 @@ int main(int argc, char** argv)
             Debug = &null_stream;
         }
 
-        MRuby rb;
+        MRuby::Interpreter rb;
 
         *Debug << "reading from stdin" << std::endl;
         if (!rb.eval("item = JSON.parse(STDIN.read)"))

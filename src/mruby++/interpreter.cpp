@@ -1,10 +1,14 @@
-#include "mruby++.h"
-#include "mruby/compile.h"
+#include "interpreter.h"
+
+#include "class.h"
 
 #include <iostream>
 #include <stdexcept>
 
-MRuby::MRuby()
+namespace MRuby
+{
+
+Interpreter::Interpreter()
 : m_state(mrb_open())
 , m_context(mrbc_context_new(m_state))
 {
@@ -19,23 +23,23 @@ MRuby::MRuby()
     }
 }
 
-MRuby::~MRuby()
+Interpreter::~Interpreter()
 {
     mrbc_context_free(m_state, m_context);
     mrb_close(m_state);
 }
 
-mrb_state* MRuby::state() const
+mrb_state* Interpreter::state() const
 {
     return m_state;
 }
 
-struct RObject* MRuby::exc() const
+struct RObject* Interpreter::exc() const
 {
     return m_state->exc;
 }
 
-void MRuby::print_error()
+void Interpreter::print_error()
 {
     if (mrb_undef_p(m_lastval))
     {
@@ -45,9 +49,12 @@ void MRuby::print_error()
     mrb_print_error(m_state);
 }
 
-bool MRuby::eval(std::string_view command)
+bool Interpreter::eval(std::string_view command)
 {
     m_lastval = mrb_load_nstring_cxt(m_state, command.data(), command.length(), m_context);
 
     return exc() == 0;
 }
+
+}
+

@@ -1,9 +1,10 @@
 configure_file(config.h.in config.h)
 
+add_subdirectory(mruby++)
+
 set(PROJECT_SOURCES
     expressionwrapper.cpp
     main.cpp
-    mruby++.cpp
 )
 
 add_executable(rq
@@ -22,7 +23,7 @@ set_property(
 )
 
 target_link_libraries(rq PRIVATE
-  ${MRUBY_LIBS}
+  mruby++
 )
 
 install(
