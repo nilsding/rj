@@ -1,1 +1,47 @@
-[{"id"=>1, "foo"=>true, "bar"=>{"name"=>"Bugs", "price_min"=>0.5, "price_max"=>30.0}}, {"id"=>2, "foo"=>false, "bar"=>{"name"=>"Features", "price_min"=>1.2, "price_max"=>29.95}}, {"id"=>3, "foo"=>true, "bar"=>{"name"=>"Ruby", "price_min"=>3.5, "price_max"=>21.44}}, {"id"=>4, "foo"=>true, "bar"=>{"name"=>"FooBar", "price_min"=>0.3, "price_max"=>45.32}}, {"id"=>5, "foo"=>false, "bar"=>{"name"=>"High5", "price_min"=>13.37, "price_max"=>420.69}}]
+[
+  {
+    "id" => 1,
+    "foo" => true,
+    "bar" => {
+      "name" => "Bugs",
+      "price_min" => 0.5,
+      "price_max" => 30.0,
+    },
+  },
+  {
+    "id" => 2,
+    "foo" => false,
+    "bar" => {
+      "name" => "Features",
+      "price_min" => 1.2,
+      "price_max" => 29.95,
+    },
+  },
+  {
+    "id" => 3,
+    "foo" => true,
+    "bar" => {
+      "name" => "Ruby",
+      "price_min" => 3.5,
+      "price_max" => 21.44,
+    },
+  },
+  {
+    "id" => 4,
+    "foo" => true,
+    "bar" => {
+      "name" => "FooBar",
+      "price_min" => 0.3,
+      "price_max" => 45.32,
+    },
+  },
+  {
+    "id" => 5,
+    "foo" => false,
+    "bar" => {
+      "name" => "High5",
+      "price_min" => 13.37,
+      "price_max" => 420.69,
+    },
+  },
+]

@@ -9,6 +9,26 @@ class OutputFormat < RqTest
       ],
       stdin:  :basic_array,
       stdout: :from_fixture
+
+  rq_test! :ruby_compact,
+      argv: [
+        '-c',
+        '-o',
+        'ruby',
+      ],
+      stdin:  :basic_array,
+      stdout: :from_fixture
+
+  # the trashpandas object (from /r/trashpandas/top.json) has some interesting
+  # attributes like empty arrays/hashes, arrays of hashes, and `null`s that
+  # the ruby formatter should handle nicely
+  rq_test! :ruby_trashpandas,
+      argv: [
+        '-o',
+        'ruby',
+      ],
+      stdin:  :reddit_trashpandas,
+      stdout: :from_fixture
   # END format tests =========================================================
 
   # BEGIN flag handling ======================================================

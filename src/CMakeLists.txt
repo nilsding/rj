@@ -9,6 +9,7 @@ set(PROJECT_SOURCES
 
 add_mrbc(RUBY_SOURCES
   rq.rb
+  ruby_formatter.rb
 )
 
 add_executable(rq

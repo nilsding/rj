@@ -12,6 +12,7 @@
 static std::ostream* Debug = &std::cerr;
 
 extern const uint8_t mrbc_rq[];
+extern const uint8_t mrbc_ruby_formatter[];
 
 //! \brief Parses and represents command line arguments.
 struct ProgramOptions
@@ -191,6 +192,7 @@ int main(int argc, char** argv)
         rq_class->ivar_set("@compact", mrb_bool_value(opts.compact));
         rq_class->ivar_set("@debug", mrb_bool_value(opts.debug));
         rq_class->ivar_set("@output_format", opts.output_format);
+        rb.load_irep(mrbc_ruby_formatter);
 
         *Debug << "reading from stdin" << std::endl;
         if (!rb.eval("item = JSON.parse(STDIN.read)"))

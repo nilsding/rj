@@ -11,17 +11,16 @@ class Rq
 
   # Prints the result of `item`.
   def self.print_result(item)
-    json_generate_opts = {
+    generate_opts = {
       pretty_print: !compact?,
       indent_width: 2,
     }
 
     case output_format
     when :json
-      puts JSON.generate(item, **json_generate_opts)
+      puts JSON.generate(item, **generate_opts)
     when :ruby
-      # TODO: figure out how to pretty print this
-      puts item.inspect
+      puts RubyFormatter.generate(item, **generate_opts)
     when :plain
       puts item
     else
