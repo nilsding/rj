@@ -16,6 +16,11 @@ Class::~Class()
     // nothing to do here
 }
 
+void Class::ivar_set(std::string_view name, std::string_view value)
+{
+    ivar_set(m_rb->symbol(name), mrb_symbol_value(m_rb->symbol(value)));
+}
+
 void Class::ivar_set(std::string_view name, mrb_value value)
 {
     ivar_set(m_rb->symbol(name), value);

@@ -1,3 +1,5 @@
+rq: -o needs to be the last flag
+
 Usage: rq [options] [--] [EXPRESSION...]
   -c              compact the JSON instead of pretty printing it
   -d              extra debug output

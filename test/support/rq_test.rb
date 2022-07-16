@@ -28,16 +28,55 @@ class RqTest < ::Minitest::Test
       .gsub(/(.)([A-Z])/, '\1_\2')
       .downcase
     define_method :"test_#{underscored_class_name}_#{name}" do
+      if ENV["OUTPUT_ONLY"]
+        puts "\033[34;1m"
+        header = "Test: #{__method__} "
+        header += ('=' * (79 - header.length))
+        puts header
+      end
       stdin = JsonFixtures.fetch(stdin) if stdin.is_a?(Symbol)
 
-      stderr = StderrFixtures.fetch(__method__) if stderr == :from_fixture
-      stderr = StderrFixtures.fetch(stderr) if stderr.is_a?(Symbol)
+      unless ENV["RECORD"] || ENV["OUTPUT_ONLY"]
+        stderr = StderrFixtures.fetch(__method__) if stderr == :from_fixture
+        stderr = StderrFixtures.fetch(stderr) if stderr.is_a?(Symbol)
 
-      stdout = StdoutFixtures.fetch(__method__) if stdout == :from_fixture
-      stdout = StdoutFixtures.fetch(stdout) if stdout.is_a?(Symbol)
+        stdout = StdoutFixtures.fetch(__method__) if stdout == :from_fixture
+        stdout = StdoutFixtures.fetch(stdout) if stdout.is_a?(Symbol)
+      end
 
+      if ENV["OUTPUT_ONLY"]
+        print "\033[0mRunning:\033[32;1m "
+        print "rq \033[35;1m"
+        puts argv.join(" ")
+      end
       rq = RqRunner.new(argv: argv, stdin: stdin)
       rq.run
+
+      if ENV["OUTPUT_ONLY"]
+        puts "\033[0mstderr:\033[31;1m"
+        puts rq.stderr
+        puts "\033[0mstdout:\033[33;1m"
+        puts rq.stdout
+        puts "\033[0mexit status: #{rq.status}"
+        puts
+        puts
+        return
+      end
+
+      if ENV["RECORD"]
+        if stderr == :from_fixture
+          File.open(File.expand_path("../fixtures/#{__method__}_stderr.txt", __dir__), 'w') do |f|
+            f.write rq.stderr
+          end
+          stderr = rq.stderr
+        end
+        if stdout == :from_fixture
+          File.open(File.expand_path("../fixtures/#{__method__}_stdout.txt", __dir__), 'w') do |f|
+            f.write rq.stdout
+          end
+          stdout = rq.stdout
+        end
+      end
 
       assert_equal rq.status, status, ["exit status", msg].compact.join(": ")
       assert_equal rq.stderr, stderr, ["stderr", msg].compact.join(": ")

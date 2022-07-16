@@ -3,5 +3,7 @@ rq: invalid option -U
 Usage: rq [options] [--] [EXPRESSION...]
   -c              compact the JSON instead of pretty printing it
   -d              extra debug output
+  -o FORMAT       print the result in FORMAT
+                  supported formats: json (default), ruby, plain
   -v              print the version number
   -h              show this message

@@ -29,6 +29,9 @@ struct ProgramOptions
     //! `-v`: \c true if the program should exit with its version info.
     bool version = false;
 
+    //! `-o`: the output format, default: "json"
+    std::string_view output_format = "json";
+
     //! A list of Ruby expressions to evaluate in the given order.
     std::vector<std::string_view> expressions;
 };
@@ -88,6 +91,21 @@ ProgramOptions::ProgramOptions(int argc, char** argv)
                 case 'd':
                     debug = true;
                     break;
+                case 'o':
+                {
+                    if (argit + 1 != arg.end()) // check if this is the last flag in the sequence
+                    {
+                        throw std::runtime_error("-o needs to be the last flag");
+                    }
+                    if (it + 1 == args.end()) // ensure there is one more parameter coming next
+                    {
+                        throw std::runtime_error("-o needs an extra parameter");
+                    }
+
+                    it = args.erase(it); // remove the current arg from the list as we already processed it
+                    output_format = *it;
+                    continue;
+                }
                 case 'h':
                     help = true;
                     break;
@@ -124,6 +142,8 @@ void print_usage(std::ostream& stream = std::cout)
     stream << R"(Usage: rq [options] [--] [EXPRESSION...]
   -c              compact the JSON instead of pretty printing it
   -d              extra debug output
+  -o FORMAT       print the result in FORMAT
+                  supported formats: json (default), ruby, plain
   -v              print the version number
   -h              show this message)" << std::endl;
 }
@@ -170,6 +190,7 @@ int main(int argc, char** argv)
         MRuby::Class* rq_class = rb.class_get("Rq");
         rq_class->ivar_set("@compact", mrb_bool_value(opts.compact));
         rq_class->ivar_set("@debug", mrb_bool_value(opts.debug));
+        rq_class->ivar_set("@output_format", opts.output_format);
 
         *Debug << "reading from stdin" << std::endl;
         if (!rb.eval("item = JSON.parse(STDIN.read)"))

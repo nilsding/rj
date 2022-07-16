@@ -1,0 +1,4 @@
+loading Rq class
+reading from stdin
+running 0 expressions
+printing item
