@@ -60,7 +60,7 @@ function(add_mrbc out_var)
 endfunction()
 
 # configure the rest of our project
-project(rq VERSION 0.1.0 LANGUAGES CXX)
+project(rq VERSION 0.2.0 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
