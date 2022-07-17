@@ -81,6 +81,8 @@ compile_commands.json
 
 # RDoc output
 /doc
+# Our docs
+!/docs
 
 # MRuby version lockfile
 mruby_config.rb.lock

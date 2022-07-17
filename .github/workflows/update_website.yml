@@ -1,0 +1,56 @@
+---
+
+name: Update website content
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  update-website:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          path: src
+          fetch-depth: 0
+
+      - name: Checkout repo (gh-pages branch)
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: pages
+
+      - name: Update content
+        run: |
+          rm -f pages/*.md
+          cp -v src/docs/website/*.md pages/
+
+          echo "* regenerating changelog page..."
+          (echo $'---\n---\n' && cat src/CHANGELOG.md) > pages/changelog.md
+
+          echo "* updating version data files..."
+          mkdir -p pages/_data
+          # current version
+          git -C src describe --tags --abbrev=0 > pages/_data/current_version.yml
+          # all known versions
+          git -C src tag -l | sed 's/^/- /' > pages/_data/versions.yml
+
+      - name: Commit and push
+        run: |
+          commit=$(git -C src rev-parse HEAD)
+          pushd pages
+            if [ $(git status --porcelain | wc -l) -eq 0 ]; then
+              echo "* content did not change, not updating gh-pages branch"
+              exit
+            fi
+            echo "* content changed, updating gh-pages branch"
+            echo "$commit" > _data/commit_info.yml
+            git config user.name 'Georg Gadinger'
+            git config user.email 'nilsding@nilsding.org'
+            git add .
+            git commit -m "update content from ${commit}"
+            git push
+          popd
