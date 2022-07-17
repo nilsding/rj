@@ -1,6 +1,6 @@
 title: rq
 description: >-
-  A Ruby JSON command-line processor
+  A Ruby command-line JSON processor
 
 permalink: /:categories/:year/:month/:day/:title/
 
@@ -8,4 +8,8 @@ markdown: kramdown
 
 nav:
   Home: '/'
+  Get it: '/download'
   Tutorial: '/tutorial'
+  Code: 'https://github.com/nilsding/rq'
+  Bugs: 'https://github.com/nilsding/rq/issues'
+  Changelog: '/changelog'

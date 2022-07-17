@@ -154,6 +154,10 @@ blockquote {
         border-left: none;
       }
 
+      &:last-child {
+        padding-right: 0;
+      }
+
       a {
         font-weight: 600;
         color: #000000;
@@ -272,6 +276,7 @@ details {
   padding: .2rem;
 
   summary {
+    cursor: pointer;
     position: relative;
     display: inline-block;
     padding: 5px 16px;
@@ -303,6 +308,10 @@ details {
       border-color: rgba(27, 31, 36, 0.15);
       transition: none;
     }
+
+    > * {
+      display: inline;
+    }
   }
 
   &[open] {
@@ -322,4 +331,23 @@ details {
 
 .mb-6 {
   margin-bottom: 1rem;
+}
+
+sup {
+  vertical-align: super;
+  font-size: 80%;
+}
+
+a.footnote, a.reversefootnote {
+  text-decoration: none;
+}
+
+.footnotes {
+  border-top: 1px solid #eee;
+  margin-top: 2rem;
+  font-size: 80%;
+
+  a.reversefootnote {
+    font-size: 80%;
+  }
 }

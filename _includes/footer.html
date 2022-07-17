@@ -1,5 +1,5 @@
 <div class="footer">
   &copy; {{ 'now' | date: '%Y' }} <a href="https://nilsding.org">nilsding</a>
   &middot;
-  {% include commit_info.html %}
+  <a href="https://github.com/nilsding/rq/commit/{{ site.data.commit_info }}">{{ site.data.commit_info | slice: 0, 8 }}</a>
 </div>
