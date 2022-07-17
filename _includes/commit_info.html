@@ -1,0 +1,4 @@
+{%- capture commit -%}
+{%- include commit_info -%}
+{%- endcapture -%}
+<a href="https://github.com/nilsding/rq/commit/{{ commit }}">{{ commit | slice: 0, 8 }}</a>

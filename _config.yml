@@ -1,0 +1,11 @@
+title: rq
+description: >-
+  A Ruby JSON command-line processor
+
+permalink: /:categories/:year/:month/:day/:title/
+
+markdown: kramdown
+
+nav:
+  Home: '/'
+  Tutorial: '/tutorial'
