@@ -5,7 +5,14 @@
 <nav class="nav">
   <ul>
     {% for entry in site.nav %}
-      <li><a href="{{ entry[1] | prepend: site.baseurl }}">{{ entry[0] }}</a>
+      <li><a href="
+{%- assign first_url_char = entry[1] | slice: 0 -%}
+{%- if first_url_char != '/' -%}
+  {{ entry[1] }}
+{%- elsif true -%}{%- comment -%}`else` does not work here, it thinks it's part of the for...{%- endcomment -%}
+  {{ entry[1] | prepend: site.baseurl }}
+{%- endif -%}
+">{{ entry[0] }}</a>
     {% endfor %}
   </ul>
 </nav>
