@@ -1,0 +1,24 @@
+.highlighter-rouge {
+  margin: 0 0 7px;
+
+  pre, code {
+    color: #000;
+    background-color: #fbf8ef;
+  }
+
+  pre {
+    border-left-color: darken(#fbf8ef, 20%);
+  }
+
+  code {
+    .o                                     { color: #4e3163; }
+    .p,                                    { color: #4e3163; font-weight: bold; }
+    .mf, .mi, .mb, .mh, .mo, .ss, .kp, .vg { color: #6c4173; }
+    .nf                                    { color: #6c3163; }
+    .nn, .nc, .no                          { color: #ba2f59; font-weight: bold; }
+    .nb, .si, .vi, .vc                     { color: #715ab1; }
+    .k,  .kt, .nl, .kc                     { color: #3a81c3; font-weight: bold; }
+    .c,  .c1, .cm                          { color: #2aa1ae; background-color: #ecf3ec; }
+    .cp, .s,  .s1, .s2, .sc, .sr           { color: #2d9574; }
+  }
+}

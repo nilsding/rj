@@ -3,6 +3,7 @@
 @charset 'utf-8';
 
 @import 'reset';
+@import 'highlighter';
 
 $color-base: #e499a0;
 
@@ -84,7 +85,7 @@ ol {
 }
 
 code, pre {
-  background-color: lighten($color-base, 17%);
+  background-color: #fbf8ef;
   font-family: monospace;
 }
 
@@ -97,7 +98,7 @@ code {
 
 pre {
   overflow-x: auto;
-  border-left: 0.3rem solid $color-base;
+  border-left: 0.3rem solid darken(#fbf8ef, 20%);
   margin: 0;
   padding: 0.5rem;
 
