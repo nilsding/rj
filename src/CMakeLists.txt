@@ -8,23 +8,23 @@ set(PROJECT_SOURCES
 )
 
 add_mrbc(RUBY_SOURCES
-  rq.rb
+  rj.rb
   ruby_formatter.rb
 )
 
-add_executable(rq
+add_executable(rj
   ${PROJECT_SOURCES}
   ${RUBY_SOURCES}
 )
 
-add_dependencies(rq mruby)
+add_dependencies(rj mruby)
 
-target_link_libraries(rq PRIVATE
+target_link_libraries(rj PRIVATE
   mruby++
 )
 
 install(
-  TARGETS rq
+  TARGETS rj
   RUNTIME DESTINATION bin
 )
 
@@ -32,8 +32,8 @@ install(
 file(GLOB test_files ${CMAKE_SOURCE_DIR}/test/*.rb)
 foreach(test_f ${test_files})
   get_filename_component(test_name ${test_f} NAME_WE)
-  # ignore rq_test test suite, as it just tests everything
-  if (${test_name} STREQUAL rq_test)
+  # ignore rj_test test suite, as it just tests everything
+  if (${test_name} STREQUAL rj_test)
     continue()
   endif()
 
@@ -43,6 +43,6 @@ foreach(test_f ${test_files})
   )
   set_property(
     TEST ${test_name}
-    PROPERTY ENVIRONMENT RQ_BIN=$<TARGET_FILE:rq>
+    PROPERTY ENVIRONMENT RJ_BIN=$<TARGET_FILE:rj>
   )
 endforeach()

@@ -1,4 +1,4 @@
-Usage: rq [options] [--] [EXPRESSION...]
+Usage: rj [options] [--] [EXPRESSION...]
   -c              compact the JSON instead of pretty printing it
   -d              extra debug output
   -o FORMAT       print the result in FORMAT

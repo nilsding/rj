@@ -1,49 +1,49 @@
-require_relative './support/rq_test'
+require_relative './support/rj_test'
 
-class Internals < RqTest
-  rq_test! :noflags,
+class Internals < RjTest
+  rj_test! :noflags,
       argv: [
         '--',
-        'Rq.__debug_info',
+        'Rj.__debug_info',
       ],
       stdin:  "{}",
       stdout: :from_fixture
 
-  rq_test! :compact,
+  rj_test! :compact,
       argv: [
         '-c',
         '--',
-        'Rq.__debug_info',
+        'Rj.__debug_info',
       ],
       stdin:  "{}",
       stdout: :from_fixture
 
-  rq_test! :debug,
+  rj_test! :debug,
       argv: [
         '-d',
         '--',
-        'Rq.__debug_info',
+        'Rj.__debug_info',
       ],
       stdin:  "{}",
       stdout: :from_fixture,
       stderr: :from_fixture
 
-  rq_test! :compact_debug,
+  rj_test! :compact_debug,
       argv: [
         '-c',
         '-d',
         '--',
-        'Rq.__debug_info',
+        'Rj.__debug_info',
       ],
       stdin:  "{}",
       stdout: :from_fixture,
       stderr: :test_internals_debug
 
-  rq_test! :compact_debug_combined,
+  rj_test! :compact_debug_combined,
       argv: [
         '-cd',
         '--',
-        'Rq.__debug_info',
+        'Rj.__debug_info',
       ],
       stdin:  "{}",
       stdout: :test_internals_compact_debug,

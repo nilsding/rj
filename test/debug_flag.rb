@@ -1,7 +1,7 @@
-require_relative './support/rq_test'
+require_relative './support/rj_test'
 
-class DebugFlag < RqTest
-  rq_test! :start,
+class DebugFlag < RjTest
+  rj_test! :start,
       argv: [
         '-d',
         '.first',
@@ -11,7 +11,7 @@ class DebugFlag < RqTest
         stdout: :test_usage_from_readme_two_expressions,
         stderr: :from_fixture
 
-  rq_test! :middle,
+  rj_test! :middle,
       argv: [
         '.first',
         '-d',
@@ -21,7 +21,7 @@ class DebugFlag < RqTest
         stdout: :test_usage_from_readme_two_expressions,
         stderr: :test_debug_flag_start
 
-  rq_test! :end,
+  rj_test! :end,
       argv: [
         '.first',
         '{ one: item["foo"], two: item.dig("bar", "name") }',
@@ -31,7 +31,7 @@ class DebugFlag < RqTest
         stdout: :test_usage_from_readme_two_expressions,
         stderr: :test_debug_flag_start
 
-  rq_test! :after_two_dashes,
+  rj_test! :after_two_dashes,
       argv: [
         '.first',
         '--',

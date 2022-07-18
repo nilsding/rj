@@ -1,7 +1,7 @@
-require_relative './support/rq_test'
+require_relative './support/rj_test'
 
-class Compact < RqTest
-  rq_test! :option,
+class Compact < RjTest
+  rj_test! :option,
       argv: [
         '-c',
       ],

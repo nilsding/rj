@@ -1,4 +1,4 @@
-class Rq
+class Rj
   # Returns `true` if the final output should be compact, `false` if it should
   # be pretty printed.
   def self.compact? = @compact

@@ -11,7 +11,7 @@
 
 static std::ostream* Debug = &std::cerr;
 
-extern const uint8_t mrbc_rq[];
+extern const uint8_t mrbc_rj[];
 extern const uint8_t mrbc_ruby_formatter[];
 
 //! \brief Parses and represents command line arguments.
@@ -133,14 +133,14 @@ ProgramOptions::ProgramOptions(int argc, char** argv)
 //! \param stream The output stream to print the version info to.
 void print_version(std::ostream& stream = std::cout)
 {
-    stream << "rq " << PROJECT_VERSION << " (mruby " << MRUBY_VERSION << ")" << std::endl;
+    stream << "rj " << PROJECT_VERSION << " (mruby " << MRUBY_VERSION << ")" << std::endl;
 }
 
 //! \brief Print the application's usage to \a stream.
 //! \param stream The output stream to print the usage to.
 void print_usage(std::ostream& stream = std::cout)
 {
-    stream << R"(Usage: rq [options] [--] [EXPRESSION...]
+    stream << R"(Usage: rj [options] [--] [EXPRESSION...]
   -c              compact the JSON instead of pretty printing it
   -d              extra debug output
   -o FORMAT       print the result in FORMAT
@@ -186,18 +186,18 @@ int main(int argc, char** argv)
 
         MRuby::Interpreter rb;
 
-        *Debug << "loading Rq class" << std::endl;
-        rb.load_irep(mrbc_rq);
-        MRuby::Class* rq_class = rb.class_get("Rq");
-        rq_class->ivar_set("@compact", mrb_bool_value(opts.compact));
-        rq_class->ivar_set("@debug", mrb_bool_value(opts.debug));
-        rq_class->ivar_set("@output_format", opts.output_format);
+        *Debug << "loading Rj class" << std::endl;
+        rb.load_irep(mrbc_rj);
+        MRuby::Class* rj_class = rb.class_get("Rj");
+        rj_class->ivar_set("@compact", mrb_bool_value(opts.compact));
+        rj_class->ivar_set("@debug", mrb_bool_value(opts.debug));
+        rj_class->ivar_set("@output_format", opts.output_format);
         rb.load_irep(mrbc_ruby_formatter);
 
         *Debug << "reading from stdin" << std::endl;
         if (!rb.eval("item = JSON.parse(STDIN.read)"))
         {
-            std::cerr << "rq: read from stdin failed:" << std::endl;
+            std::cerr << "rj: read from stdin failed:" << std::endl;
             rb.print_error();
 
             return EXIT_FAILURE;
@@ -210,7 +210,7 @@ int main(int argc, char** argv)
             *Debug << "----> " << wrapped_expr << std::endl;
             if (!rb.eval(wrapped_expr))
             {
-                std::cerr << "rq: expression " << std::quoted(expr, '\'') << " failed to run:" << std::endl;
+                std::cerr << "rj: expression " << std::quoted(expr, '\'') << " failed to run:" << std::endl;
                 rb.print_error();
 
                 return EXIT_FAILURE;
@@ -218,9 +218,9 @@ int main(int argc, char** argv)
         }
 
         *Debug << "printing item" << std::endl;
-        if (!rb.eval("Rq.print_result(item)"))
+        if (!rb.eval("Rj.print_result(item)"))
         {
-            std::cerr << "rq: printing item failed" << std::endl;
+            std::cerr << "rj: printing item failed" << std::endl;
             rb.print_error();
 
             return EXIT_FAILURE;
@@ -228,7 +228,7 @@ int main(int argc, char** argv)
     }
     catch (const std::exception &ex)
     {
-        std::cerr << "rq: " << ex.what() << std::endl << std::endl;
+        std::cerr << "rj: " << ex.what() << std::endl << std::endl;
         print_usage(std::cerr);
         return EXIT_FAILURE;
     }

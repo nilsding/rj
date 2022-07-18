@@ -1,2 +1,2 @@
-rq: expression '.unknown_method' failed to run:
+rj: expression '.unknown_method' failed to run:
 (unknown):0: undefined method 'unknown_method' (NoMethodError)

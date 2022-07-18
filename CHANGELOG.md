@@ -2,6 +2,8 @@
 
 ## main
 
+- Rename project to `rj`
+
 ## v0.2.0
 
 - Add `-c` option for emitting compact JSON

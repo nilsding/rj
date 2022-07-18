@@ -1,4 +1,4 @@
-# Hash containing all JSON fixtures that can be passed to rq's stdin during testing
+# Hash containing all JSON fixtures that can be passed to rj's stdin during testing
 JsonFixtures = Dir[File.expand_path("../fixtures/*.json", __dir__)].map do |fn|
   [File.basename(fn, ".json").to_sym, File.read(fn)]
 end.to_h

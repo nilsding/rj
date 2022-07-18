@@ -1,4 +1,4 @@
-# rq
+# rj
 
 a tool that's like `jq` but uses Ruby expressions
 
@@ -6,22 +6,22 @@ a tool that's like `jq` but uses Ruby expressions
 
 ```sh
 # get the first element of an array (Enumerable#first)
-tool_that_emits_json | rq '.first'
+tool_that_emits_json | rj '.first'
 
 # get the 3rd element (Array#[])
-tool_that_emits_json | rq '[2]'
+tool_that_emits_json | rj '[2]'
 
 # get specific fields (Hash#slice)
-tool_that_emits_json | rq '.first.slice("foo", "bar")'
+tool_that_emits_json | rj '.first.slice("foo", "bar")'
 
 # or map them yourself, the second expression will be applied to the result
 # of the first.  'item' is the special variable that holds the previous
 # result
 # this also demonstrates the usage of Hash#dig to fetch nested elements
-tool_that_emits_json | rq '.first' '{ one: item["foo"], two: item.dig("bar", "name") }'
+tool_that_emits_json | rj '.first' '{ one: item["foo"], two: item.dig("bar", "name") }'
 
 # same as above, but for all elements (Enumerable#map)
-tool_that_emits_json | rq '.map { |item| { one: item["foo"], two: item.dig("bar", "name") } }'
+tool_that_emits_json | rj '.map { |item| { one: item["foo"], two: item.dig("bar", "name") } }'
 ```
 
 ## Requirements
@@ -41,10 +41,10 @@ cmake --preset dev
 cmake --build --preset dev
 
 # test it
-ruby ./test/rq_test.rb
+ruby ./test/rj_test.rb
 
 # run it
-./build/src/rq
+./build/src/rj
 ```
 
 [mruby_deps]: https://github.com/mruby/mruby/blob/3.1.0/doc/guides/compile.md#prerequisites

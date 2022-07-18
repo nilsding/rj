@@ -1,15 +1,15 @@
 require 'minitest/autorun'
 
 require_relative './fixtures'
-require_relative './rq_runner'
+require_relative './rj_runner'
 
-class RqTest < ::Minitest::Test
-  # Defines a basic test case that runs rq with a given `argv` and `stdin`, and
+class RjTest < ::Minitest::Test
+  # Defines a basic test case that runs rj with a given `argv` and `stdin`, and
   # asserts the results of `status`, `stderr`, and `stdout`.
   #
   # The name of the test method is the underscored name of the test class
   # (excluding any "Test" suffix or prefix) combined with the value of the
-  # `name` parameter prefixed with `"test_"`.  e.g. `rq_test! :foo` inside the
+  # `name` parameter prefixed with `"test_"`.  e.g. `rj_test! :foo` inside the
   # `TestBasicObject` or `BasicObjectTest` class would define a test method
   # called `test_basic_object_foo`.
   #
@@ -18,11 +18,11 @@ class RqTest < ::Minitest::Test
   #
   # Additionally `stderr` and `stdout` can be set to `:from_fixture` if you
   # want to use the test method's name as the fixture identifier.  e.g. for
-  # a `rq_test! :basic_object, stderr: :from_fixture` will use the
+  # a `rj_test! :basic_object, stderr: :from_fixture` will use the
   # `"test_basic_object_stdout.txt"` fixture.
   #
   # `msg` is an optional message that will be shown on assertion failures.
-  def self.rq_test!(name, argv: [], stdin: nil, status: 0, stderr: "", stdout: "", msg: nil)
+  def self.rj_test!(name, argv: [], stdin: nil, status: 0, stderr: "", stdout: "", msg: nil)
     underscored_class_name = self.name
       .gsub(/^Test|Test$/, '') # get rid of "Test" in the class name
       .gsub(/(.)([A-Z])/, '\1_\2')
@@ -46,18 +46,18 @@ class RqTest < ::Minitest::Test
 
       if ENV["OUTPUT_ONLY"]
         print "\033[0mRunning:\033[32;1m "
-        print "rq \033[35;1m"
+        print "rj \033[35;1m"
         puts argv.join(" ")
       end
-      rq = RqRunner.new(argv: argv, stdin: stdin)
-      rq.run
+      rj = RjRunner.new(argv: argv, stdin: stdin)
+      rj.run
 
       if ENV["OUTPUT_ONLY"]
         puts "\033[0mstderr:\033[31;1m"
-        puts rq.stderr
+        puts rj.stderr
         puts "\033[0mstdout:\033[33;1m"
-        puts rq.stdout
-        puts "\033[0mexit status: #{rq.status}"
+        puts rj.stdout
+        puts "\033[0mexit status: #{rj.status}"
         puts
         puts
         return
@@ -66,21 +66,21 @@ class RqTest < ::Minitest::Test
       if ENV["RECORD"]
         if stderr == :from_fixture
           File.open(File.expand_path("../fixtures/#{__method__}_stderr.txt", __dir__), 'w') do |f|
-            f.write rq.stderr
+            f.write rj.stderr
           end
-          stderr = rq.stderr
+          stderr = rj.stderr
         end
         if stdout == :from_fixture
           File.open(File.expand_path("../fixtures/#{__method__}_stdout.txt", __dir__), 'w') do |f|
-            f.write rq.stdout
+            f.write rj.stdout
           end
-          stdout = rq.stdout
+          stdout = rj.stdout
         end
       end
 
-      assert_equal rq.status, status, ["exit status", msg].compact.join(": ")
-      assert_equal rq.stderr, stderr, ["stderr", msg].compact.join(": ")
-      assert_equal rq.stdout, stdout, ["stdout", msg].compact.join(": ")
+      assert_equal rj.status, status, ["exit status", msg].compact.join(": ")
+      assert_equal rj.stderr, stderr, ["stderr", msg].compact.join(": ")
+      assert_equal rj.stdout, stdout, ["stdout", msg].compact.join(": ")
     end
   end
 end

@@ -1,8 +1,8 @@
-require_relative './support/rq_test'
+require_relative './support/rj_test'
 
-class OutputFormat < RqTest
+class OutputFormat < RjTest
   # BEGIN format tests =======================================================
-  rq_test! :ruby,
+  rj_test! :ruby,
       argv: [
         '-o',
         'ruby',
@@ -10,7 +10,7 @@ class OutputFormat < RqTest
       stdin:  :basic_array,
       stdout: :from_fixture
 
-  rq_test! :ruby_compact,
+  rj_test! :ruby_compact,
       argv: [
         '-c',
         '-o',
@@ -22,7 +22,7 @@ class OutputFormat < RqTest
   # the trashpandas object (from /r/trashpandas/top.json) has some interesting
   # attributes like empty arrays/hashes, arrays of hashes, and `null`s that
   # the ruby formatter should handle nicely
-  rq_test! :ruby_trashpandas,
+  rj_test! :ruby_trashpandas,
       argv: [
         '-o',
         'ruby',
@@ -32,7 +32,7 @@ class OutputFormat < RqTest
   # END format tests =========================================================
 
   # BEGIN flag handling ======================================================
-  rq_test! :no_arg,
+  rj_test! :no_arg,
       argv: [
         '-o',
       ],
@@ -40,7 +40,7 @@ class OutputFormat < RqTest
       stderr: :from_fixture,
       msg: '-o needs an argument'
 
-  rq_test! :combined_flag_at_start,
+  rj_test! :combined_flag_at_start,
       argv: [
         '-od',
         'ruby'
@@ -49,7 +49,7 @@ class OutputFormat < RqTest
       stderr: :from_fixture,
       msg: '-o needs to be the last one'
 
-  rq_test! :combined_flag_at_end,
+  rj_test! :combined_flag_at_end,
       argv: [
         '-do',
         'ruby',
@@ -58,7 +58,7 @@ class OutputFormat < RqTest
       stdout: :test_output_format_ruby,
       stderr: :from_fixture
 
-  rq_test! :combined_arg,
+  rj_test! :combined_arg,
       argv: [
         '-oruby',
       ],

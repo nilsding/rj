@@ -1,18 +1,18 @@
-require_relative './support/rq_test'
+require_relative './support/rj_test'
 
-class BasicObjectTest < RqTest
-  rq_test! :noargs,
+class BasicObjectTest < RjTest
+  rj_test! :noargs,
       stdin:  :basic_object,
       stdout: :from_fixture
 
-  rq_test! :languages,
+  rj_test! :languages,
       argv: [
         '["languages"]',
       ],
       stdin:  :basic_object,
       stdout: :from_fixture
 
-  rq_test! :languages_select,
+  rj_test! :languages_select,
       argv: [
         '["languages"]',
         '.select { |lang| %w[C++ Ruby].include?(lang) }'
@@ -20,21 +20,21 @@ class BasicObjectTest < RqTest
       stdin:  :basic_object,
       stdout: :from_fixture
 
-  rq_test! :return_string,
+  rj_test! :return_string,
       argv: [
         '["location"]',
       ],
       stdin:  :basic_object,
       stdout: :from_fixture
 
-  rq_test! :return_object,
+  rj_test! :return_object,
       argv: [
         '{ location: item["location"], short_location: item["location"].upcase[0..1] }',
       ],
       stdin:  :basic_object,
       stdout: :from_fixture
 
-  rq_test! :error,
+  rj_test! :error,
       argv: [
         '.unknown_method',
       ],

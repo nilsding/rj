@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-# This runs the entire test suite of rq.
+# This runs the entire test suite of rj.
 
 require_relative './basic_object'
 require_relative './compact'
