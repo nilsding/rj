@@ -1,4 +1,4 @@
-title: rq
+title: rj
 description: >-
   A Ruby command-line JSON processor
 
@@ -10,6 +10,6 @@ nav:
   Home: '/'
   Get it: '/download'
   Tutorial: '/tutorial'
-  Code: 'https://github.com/nilsding/rq'
-  Bugs: 'https://github.com/nilsding/rq/issues'
+  Code: 'https://github.com/nilsding/rj'
+  Bugs: 'https://github.com/nilsding/rj/issues'
   Changelog: '/changelog'
