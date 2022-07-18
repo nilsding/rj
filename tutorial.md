@@ -61,12 +61,12 @@ curl 'https://api.github.com/repos/Retrospring/retrospring/commits?per_page=5'
 </details>
 
 GitHub returns nicely formatted JSON.  For servers that don't, it can be
-helpful to pipe the response through rq to pretty-print it.  The simplest
-usage of rq is to not pass any expressions to it at all; rq takes the input
+helpful to pipe the response through rj to pretty-print it.  The simplest
+usage of rj is to not pass any expressions to it at all; rj takes the input
 and prints it in a formatted way.
 
 ```sh
-curl 'https://api.github.com/repos/Retrospring/retrospring/commits?per_page=5' | rq
+curl 'https://api.github.com/repos/Retrospring/retrospring/commits?per_page=5' | rj
 ```
 
 <details markdown="1">
@@ -116,15 +116,15 @@ curl 'https://api.github.com/repos/Retrospring/retrospring/commits?per_page=5' |
 
 </details>
 
-We can use rq to extract just the first commit.  You can do that in many ways,
+We can use rj to extract just the first commit.  You can do that in many ways,
 for example by using the [`Enumerable#first` method][mruby_enumerable_first],
 or in this case using [`Array#[]`][mruby_array_element].
 
 ```sh
-curl 'https://api.github.com/repos/Retrospring/retrospring/commits?per_page=5' | rq '.first'
+curl 'https://api.github.com/repos/Retrospring/retrospring/commits?per_page=5' | rj '.first'
 
 # this works too:
-curl 'https://api.github.com/repos/Retrospring/retrospring/commits?per_page=5' | rq '[0]'
+curl 'https://api.github.com/repos/Retrospring/retrospring/commits?per_page=5' | rj '[0]'
 ```
 
 <details markdown="1">
@@ -226,7 +226,7 @@ There's a lot of info we don't care about there, so we'll restrict it down to
 the most interesting fields.
 
 ```sh
-rq '.first' '{ message: item.dig("commit", "message"), name: item.dig("commit", "committer", "name") }'
+rj '.first' '{ message: item.dig("commit", "message"), name: item.dig("commit", "committer", "name") }'
 ```
 
 <details markdown="1">
@@ -241,7 +241,7 @@ rq '.first' '{ message: item.dig("commit", "message"), name: item.dig("commit", 
 
 </details>
 
-Chaining expressions in rq is done by passing another expression after one.
+Chaining expressions in rj is done by passing another expression after one.
 In case you don't want to chain another method on the previous result, but
 return another one entirely you can do that too.  To access the previous
 result you can use the `item` variable.
@@ -253,7 +253,7 @@ do the following:
 ```sh
 # Here I assigned the contents of the `commit` field to a temporary variable
 # which I then use in the resulting hash.  The result is the same as before.
-rq '.first' 'commit = item["commit"]; { message: commit["message"], name: commit.dig("committer", "name") }'
+rj '.first' 'commit = item["commit"]; { message: commit["message"], name: commit.dig("committer", "name") }'
 ```
 
 But I'm not done quite yet, I would like to only get the first line of a
@@ -262,7 +262,7 @@ commit message.  This can be achieve by using the
 used earlier to get the first element of an array:
 
 ```sh
-rq '.first' '{ message: item.dig("commit", "message").split("\n").first, name: item.dig("commit", "committer", "name") }'
+rj '.first' '{ message: item.dig("commit", "message").split("\n").first, name: item.dig("commit", "committer", "name") }'
 ```
 
 <details markdown="1">
@@ -280,7 +280,7 @@ rq '.first' '{ message: item.dig("commit", "message").split("\n").first, name: i
 That's more like it.  Let's apply that to all our commits:
 
 ```sh
-rq '.map { |x| { message: x.dig("commit", "message").split("\n").first, name: x.dig("commit", "committer", "name") } }'
+rj '.map { |x| { message: x.dig("commit", "message").split("\n").first, name: x.dig("commit", "committer", "name") } }'
 ```
 
 <details markdown="1">
@@ -345,7 +345,7 @@ commits and make a simple list of strings to go along with the `"message"` and
 `"author"` fields we already have.
 
 ```sh
-rq '.map { |x| { message: x.dig("commit", "message").split("\n").first, name: x.dig("commit", "committer", "name"), parents: x["parents"].map { |parent| parent["html_url"] } } }'
+rj '.map { |x| { message: x.dig("commit", "message").split("\n").first, name: x.dig("commit", "committer", "name"), parents: x["parents"].map { |parent| parent["html_url"] } } }'
 ```
 
 <details markdown="1">
@@ -398,11 +398,11 @@ Here we're making a new object as before, but this time the `parents` field is
 being set to `x["parents"].map { |parent| parent["html_url"] }`, which
 collects all of the parent commit URLs defined in the parents object.
 
-Finally, we can tell `rq` to output our transformed object as a Ruby hash by
+Finally, we can tell rj to output our transformed object as a Ruby hash by
 setting `-o ruby`.
 
 ```sh
-rq -o ruby '.map { |x| { message: x.dig("commit", "message").split("\n").first, name: x.dig("commit", "committer", "name"), parents: x["parents"].map { |parent| parent["html_url"] } } }'
+rj -o ruby '.map { |x| { message: x.dig("commit", "message").split("\n").first, name: x.dig("commit", "committer", "name"), parents: x["parents"].map { |parent| parent["html_url"] } } }'
 ```
 
 <details markdown="1">

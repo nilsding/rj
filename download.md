@@ -3,13 +3,13 @@
 
 # Get it
 
-rq is written in C++ and has no runtime dependencies[^1].  Building it should
+rj is written in C++ and has no runtime dependencies[^1].  Building it should
 Just Work™ for most platforms, as long as there is a working C++17 compiler
 for it and it's supported by [mruby].
 
 ## Binaries
 
-As rq is still a work in progress there are no binaries for rq released yet.
+As rj is still a work in progress there are no binaries for rj released yet.
 
 From the time being you will need to build it yourself from source.
 
@@ -22,7 +22,7 @@ You can download the sources here:
 - Development version ([.tar.gz][main_tgz], [.zip][main_zip],
   [git repository][main_git])
 
-To build rq you first need to install the following build-time requirements:
+To build rj you first need to install the following build-time requirements:
 
 - CMake 3.20 (or newer)
 - Ruby 2.5 (or newer)
@@ -41,7 +41,7 @@ make
 During the `make` step mruby is downloaded and built, there are no extra steps
 needed for that.
 
-If you want to install rq on your system you can run `sudo make install`
+If you want to install rj on your system you can run `sudo make install`
 afterwards.
 
 ### macOS
@@ -70,10 +70,10 @@ sudo zypper in cmake gcc-c++ ruby git
     such as `libc++`/`libstdc++`, `libm`, `libc`.
 
 [mruby]: https://mruby.org/
-[currver_tgz]: https://github.com/nilsding/rq/archive/refs/tags/{{ site.data.current_version }}.tar.gz
-[currver_zip]: https://github.com/nilsding/rq/archive/refs/tags/{{ site.data.current_version }}.zip
-[main_tgz]: https://github.com/nilsding/rq/archive/refs/heads/main.tar.gz
-[main_zip]: https://github.com/nilsding/rq/archive/refs/heads/main.zip
-[main_git]: https://github.com/nilsding/rq.git
+[currver_tgz]: https://github.com/nilsding/rj/archive/refs/tags/{{ site.data.current_version }}.tar.gz
+[currver_zip]: https://github.com/nilsding/rj/archive/refs/tags/{{ site.data.current_version }}.zip
+[main_tgz]: https://github.com/nilsding/rj/archive/refs/heads/main.tar.gz
+[main_zip]: https://github.com/nilsding/rj/archive/refs/heads/main.zip
+[main_git]: https://github.com/nilsding/rj.git
 [brew]: https://brew.sh/
 [rbenv]: https://github.com/rbenv/rbenv

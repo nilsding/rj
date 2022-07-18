@@ -2,12 +2,12 @@
 root: true
 ---
 
-# rq
+# rj
 
-rq is a Ruby command-line JSON processor.  It's somewhat like [jq], except
+rj is a Ruby command-line JSON processor.  It's somewhat like [jq], except
 that you write your expressions in pure Ruby.
 
-rq is a standalone binary, you don't need to have Ruby installed on your
+rj is a standalone binary, you don't need to have Ruby installed on your
 system.  This is possible thanks to the [mruby] project.
 
 If you're already familiar with Ruby there is no need to learn a completely
