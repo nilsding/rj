@@ -8,6 +8,7 @@ set(PROJECT_SOURCES
 )
 
 add_mrbc(RUBY_SOURCES
+  method_accessor.rb
   rj.rb
   ruby_formatter.rb
 )

@@ -3,6 +3,7 @@
 ## main
 
 - Rename project to `rj`
+- New syntax for navigating objects: `.data.id` instead of `["data"]["id"]`
 
 ## v0.2.0
 
