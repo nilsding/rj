@@ -22,6 +22,12 @@ tool_that_emits_json | rj '.first' '{ one: item["foo"], two: item.dig("bar", "na
 
 # same as above, but for all elements (Enumerable#map)
 tool_that_emits_json | rj '.map { |item| { one: item["foo"], two: item.dig("bar", "name") } }'
+
+# instead of `[]` and `dig` you can access an object's fields like methods
+# too.
+# this only works with keys that aren't already methods (e.g. `first`, `dig`,
+# `slice`, ...), and only on objects -- arrays need to be accessed like '[0]'.
+tool_that_emits_json | rj '.map { |item| { one: item.foo, two: item.bar.name } }'
 ```
 
 ## Requirements

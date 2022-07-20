@@ -36,4 +36,11 @@ class UsageFromReadme < RjTest
       ],
       stdin:  :basic_array,
       stdout: :from_fixture
+
+  rj_test! :map_method_syntax,
+      argv: [
+        '.map { |item| { one: item.foo, two: item.bar.name } }',
+      ],
+      stdin:  :basic_array,
+      stdout: :test_usage_from_readme_map
 end
