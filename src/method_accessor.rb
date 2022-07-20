@@ -29,7 +29,7 @@ module MethodAccessor
   def method_missing(symbol, *args)
     super unless respond_to_missing?(symbol)
 
-    self[symbol.to_s] || self[symbol]
+    self.fetch(symbol.to_s, self[symbol])
   end
 
   def respond_to_missing?(symbol, include_private = false)

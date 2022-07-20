@@ -15,4 +15,19 @@ class MethodAccessor < RjTest
       ],
       stdin:  :reddit_trashpandas,
       stdout: :from_fixture
+
+  rj_test! :bool,
+      argv: [
+        '.falsy',
+      ],
+      stdin: '{"falsy": false}',
+      stdout: "false\n"
+
+  rj_test! :bool_symbol,
+      argv: [
+        '{:falsy => false}',
+        '.falsy',
+      ],
+      stdin: '{}',
+      stdout: "false\n"
 end
