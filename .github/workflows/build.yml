@@ -5,7 +5,7 @@ name: Build
 on: [push]
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
     container: opensuse/tumbleweed
 
@@ -13,6 +13,25 @@ jobs:
       - name: Install dependencies
         run: |
           zypper in -y cmake gcc-c++ ruby git
+
+      - uses: actions/checkout@v3
+
+      - name: Configure project
+        run: cmake --preset dev
+
+      - name: Build project
+        run: cmake --build --preset dev
+
+      - name: Run tests
+        run: ruby test/rj_test.rb
+
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Install dependencies
+        run: |
+          brew install cmake git
 
       - uses: actions/checkout@v3
 
