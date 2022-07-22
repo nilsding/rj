@@ -66,4 +66,35 @@ class OutputFormat < RjTest
       stderr: :test_output_format_combined_flag_at_start,
       msg: 'format parameter needs to be its own argument'
   # END flag handling ========================================================
+
+  # BEGIN flag handling for '-r' =============================================
+  rj_test! :r_flag,
+      argv: [
+        '-r',
+      ],
+      stdin: %("plain text string"),
+      stdout: %(plain text string\n)
+
+  rj_test! :r_flag_o_json_afterwards,
+      argv: [
+        '-r',
+        '-o',
+        'json',
+      ],
+      stdin: %("plain text string"),
+      stdout: %("plain text string"\n),
+      msg: 'CLI flags are evaluated left to right, lastmost option wins'
+
+  rj_test! :r_flag_o_json_afterwards_then_r_again,
+      argv: [
+        '-r',
+        '-o',
+        'json',
+        '-r',
+      ],
+      stdin: %("plain text string"),
+      stdout: %(plain text string\n),
+      msg: 'CLI flags are evaluated left to right, lastmost option wins'
+
+  # END flag handling for '-r' ===============================================
 end

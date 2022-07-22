@@ -108,6 +108,9 @@ ProgramOptions::ProgramOptions(int argc, char** argv)
                     output_format = *it;
                     continue;
                 }
+                case 'r':
+                    output_format = "plain";
+                    break;
                 case 'h':
                     help = true;
                     break;
@@ -146,6 +149,7 @@ void print_usage(std::ostream& stream = std::cout)
   -d              extra debug output
   -o FORMAT       print the result in FORMAT
                   supported formats: json (default), ruby, plain
+  -r              output raw texts, same as '-o plain'
   -v              print the version number
   -h              show this message)" << std::endl;
 }
