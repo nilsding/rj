@@ -5,6 +5,8 @@
 
 ## main
 
+## v0.3.0
+
 - Rename project to `rj`
 - New syntax for navigating objects: `.data.id` instead of `["data"]["id"]`
 - Add `-r` option that's the same as `-o plain`
