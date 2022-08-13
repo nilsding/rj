@@ -5,6 +5,8 @@
 
 ## main
 
+- Colourise json/ruby output
+
 ## v0.3.0
 
 - Rename project to `rj`
