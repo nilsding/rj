@@ -5,6 +5,7 @@
 #include <iterator>
 #include <string_view>
 #include <vector>
+#include <unistd.h>
 
 #include "expressionwrapper.h"
 #include "mruby++.h"
@@ -14,6 +15,8 @@ static std::ostream* Debug = &std::cerr;
 extern const uint8_t mrbc_rj[];
 extern const uint8_t mrbc_ruby_formatter[];
 extern const uint8_t mrbc_method_accessor[];
+extern const uint8_t mrbc_colours[];
+extern const uint8_t mrbc_json_ext[];
 
 //! \brief Parses and represents command line arguments.
 struct ProgramOptions
@@ -22,6 +25,8 @@ struct ProgramOptions
     //! \exception std::runtime_error when command line argument parsing fails.
     ProgramOptions(int argc, char** argv);
 
+    //! `-C`: \c true if the output should be colourised.  if `-M` (monochrome) is given this will be set to \c false.
+    bool colour = isatty(fileno(stdout));
     //! `-c`: \c true if the JSON should be compacted instead of pretty printed
     bool compact = false;
     //! `-d`: \c true if you want debug output
@@ -87,6 +92,12 @@ ProgramOptions::ProgramOptions(int argc, char** argv)
             {
                 switch (*argit)
                 {
+                case 'C':
+                    colour = true;
+                    break;
+                case 'M':
+                    colour = false;
+                    break;
                 case 'c':
                     compact = true;
                     break;
@@ -145,6 +156,8 @@ void print_version(std::ostream& stream = std::cout)
 void print_usage(std::ostream& stream = std::cout)
 {
     stream << R"(Usage: rj [options] [--] [EXPRESSION...]
+  -C              coloured output (default if the output is a terminal)
+  -M              monochrome output
   -c              compact the JSON instead of pretty printing it
   -d              extra debug output
   -o FORMAT       print the result in FORMAT
@@ -194,11 +207,14 @@ int main(int argc, char** argv)
         *Debug << "loading Rj class" << std::endl;
         rb.load_irep(mrbc_rj);
         MRuby::Class* rj_class = rb.class_get("Rj");
+        rj_class->ivar_set("@colour", mrb_bool_value(opts.colour));
         rj_class->ivar_set("@compact", mrb_bool_value(opts.compact));
         rj_class->ivar_set("@debug", mrb_bool_value(opts.debug));
         rj_class->ivar_set("@output_format", opts.output_format);
         rb.load_irep(mrbc_ruby_formatter);
         rb.load_irep(mrbc_method_accessor);
+        rb.load_irep(mrbc_colours);
+        rb.load_irep(mrbc_json_ext);
 
         *Debug << "reading from stdin" << std::endl;
         if (!rb.eval("item = JSON.parse(STDIN.read)"))

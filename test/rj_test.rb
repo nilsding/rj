@@ -3,6 +3,7 @@
 # This runs the entire test suite of rj.
 
 require_relative './basic_object'
+require_relative './colours'
 require_relative './compact'
 require_relative './debug_flag'
 require_relative './internals'

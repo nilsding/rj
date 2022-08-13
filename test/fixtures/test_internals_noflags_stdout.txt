@@ -1,4 +1,5 @@
 {
+  "colour": false,
   "compact": false,
   "debug": false,
   "output_format": "json",

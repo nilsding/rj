@@ -1,4 +1,7 @@
 class Rj
+  # Returns `true` if the output should be colourised.
+  def self.colour? = @colour
+
   # Returns `true` if the final output should be compact, `false` if it should
   # be pretty printed.
   def self.compact? = @compact
@@ -16,6 +19,8 @@ class Rj
       indent_width: 2,
     }
 
+    Colours.enable!
+
     case output_format
     when :json
       puts JSON.generate(item, **generate_opts)
@@ -30,6 +35,7 @@ class Rj
 
   # Method that returns whatever debug info I like.
   def self.__debug_info = {
+    colour: @colour,
     compact: @compact,
     debug: @debug,
     output_format:,

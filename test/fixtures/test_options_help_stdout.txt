@@ -1,4 +1,6 @@
 Usage: rj [options] [--] [EXPRESSION...]
+  -C              coloured output (default if the output is a terminal)
+  -M              monochrome output
   -c              compact the JSON instead of pretty printing it
   -d              extra debug output
   -o FORMAT       print the result in FORMAT

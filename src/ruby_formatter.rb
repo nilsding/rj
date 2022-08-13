@@ -1,22 +1,31 @@
 module RubyFormatter
   def self.generate(item, pretty_print: false, indent_width: 2)
-    return item.inspect unless pretty_print
-
-    Formatter.new(item, indent_width:).pretty_please
+    Formatter.new(item, pretty_print:, indent_width:).pretty_please
   end
 
   class Formatter
-    attr_reader :item, :indent_width, :level, :indent
+    attr_reader :item, :pretty_print, :indent_width, :level, :indent, :newline, :hash_rocket
 
-    def initialize(item, indent_width:)
+    def initialize(item, pretty_print:, indent_width:)
       @item = item
+      @pretty_print = pretty_print
       @indent_width = indent_width
 
       self.level = 0
+
+      if pretty_print
+        @newline = "\n"
+        @hash_rocket = " => "
+      else
+        @newline = ""
+        @hash_rocket = "=>"
+      end
     end
 
     def level=(level)
       @level = level
+      return unless pretty_print # no need for adjusting indentation in compact mode
+
       @indent = ' ' * (indent_width * level)
     end
 
@@ -27,25 +36,27 @@ module RubyFormatter
       when Hash
         return "{}" if obj.empty?
 
-        buf << "{\n"
+        buf << "{" << newline
         self.level += 1
         obj.each do |key, value|
-          buf << indent << key.inspect << " => " << pretty_please(value) << ",\n"
+          buf << indent << key.inspect.colourise_obj(key) << hash_rocket << pretty_please(value) << "," << newline
         end
+
         self.level -= 1
         buf << indent << "}"
       when Array
         return "[]" if obj.empty?
 
-        buf << "[\n"
+        buf << "[" << newline
         self.level += 1
         obj.each do |elem|
-          buf << indent << pretty_please(elem) << ",\n"
+          buf << indent << pretty_please(elem) << "," << newline
         end
+
         self.level -= 1
         buf << indent << "]"
       else
-        buf << obj.inspect
+        buf << obj.inspect.colourise_obj(obj)
       end
 
       buf.join
