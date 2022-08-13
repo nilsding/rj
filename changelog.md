@@ -6,6 +6,7 @@
 ## main
 
 - Colourise json/ruby output
+- Remove trailing comma from arrays and hashes in the Ruby output format
 
 ## v0.3.0
 
