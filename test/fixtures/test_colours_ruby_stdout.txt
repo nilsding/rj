@@ -55,7 +55,7 @@
           [0;35m"author_flair_css_class"[0m => [1;31mnil[0m,
           [0;35m"author_flair_richtext"[0m => [],
           [0;35m"gildings"[0m => {
-            [0;35m"gid_1"[0m => [0;36m1[0m,
+            [0;35m"gid_1"[0m => [0;36m1[0m
           },
           [0;35m"post_hint"[0m => [0;35m"image"[0m,
           [0;35m"content_categories"[0m => [1;31mnil[0m,
@@ -86,45 +86,45 @@
                 [0;35m"source"[0m => {
                   [0;35m"url"[0m => [0;35m"https://preview.redd.it/gswx30l8tra91.jpg?auto=webp&amp;s=60addc8825f960bd6cbc4191943c72844f06ef3a"[0m,
                   [0;35m"width"[0m => [0;36m1140[0m,
-                  [0;35m"height"[0m => [0;36m500[0m,
+                  [0;35m"height"[0m => [0;36m500[0m
                 },
                 [0;35m"resolutions"[0m => [
                   {
                     [0;35m"url"[0m => [0;35m"https://preview.redd.it/gswx30l8tra91.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=b3f109e2780dfca0f3ab7ac4c3198271097e03b3"[0m,
                     [0;35m"width"[0m => [0;36m108[0m,
-                    [0;35m"height"[0m => [0;36m47[0m,
+                    [0;35m"height"[0m => [0;36m47[0m
                   },
                   {
                     [0;35m"url"[0m => [0;35m"https://preview.redd.it/gswx30l8tra91.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=dd277a0ab4023f28b97ea775999373a266071dba"[0m,
                     [0;35m"width"[0m => [0;36m216[0m,
-                    [0;35m"height"[0m => [0;36m94[0m,
+                    [0;35m"height"[0m => [0;36m94[0m
                   },
                   {
                     [0;35m"url"[0m => [0;35m"https://preview.redd.it/gswx30l8tra91.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=61c22b6fc2533ec790303210376ac22694e7b222"[0m,
                     [0;35m"width"[0m => [0;36m320[0m,
-                    [0;35m"height"[0m => [0;36m140[0m,
+                    [0;35m"height"[0m => [0;36m140[0m
                   },
                   {
                     [0;35m"url"[0m => [0;35m"https://preview.redd.it/gswx30l8tra91.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=1ddb593eef41c807a59eb03aff2e7e2f5f0a68b0"[0m,
                     [0;35m"width"[0m => [0;36m640[0m,
-                    [0;35m"height"[0m => [0;36m280[0m,
+                    [0;35m"height"[0m => [0;36m280[0m
                   },
                   {
                     [0;35m"url"[0m => [0;35m"https://preview.redd.it/gswx30l8tra91.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=a75d6b2d7cdf2e19422649635cc8320ca5ee732a"[0m,
                     [0;35m"width"[0m => [0;36m960[0m,
-                    [0;35m"height"[0m => [0;36m421[0m,
+                    [0;35m"height"[0m => [0;36m421[0m
                   },
                   {
                     [0;35m"url"[0m => [0;35m"https://preview.redd.it/gswx30l8tra91.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=d1da16231ef8a3043f26b32698ba8fb27813f846"[0m,
                     [0;35m"width"[0m => [0;36m1080[0m,
-                    [0;35m"height"[0m => [0;36m473[0m,
-                  },
+                    [0;35m"height"[0m => [0;36m473[0m
+                  }
                 ],
                 [0;35m"variants"[0m => {},
-                [0;35m"id"[0m => [0;35m"FuhO2NwjwEUs0lv3I0Z-FBNcw5DLTMnmdMhYefVenXE"[0m,
-              },
+                [0;35m"id"[0m => [0;35m"FuhO2NwjwEUs0lv3I0Z-FBNcw5DLTMnmdMhYefVenXE"[0m
+              }
             ],
-            [0;35m"enabled"[0m => [0;32mtrue[0m,
+            [0;35m"enabled"[0m => [0;32mtrue[0m
           },
           [0;35m"all_awardings"[0m => [
             {
@@ -144,28 +144,28 @@
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_16.png"[0m,
                   [0;35m"width"[0m => [0;36m16[0m,
-                  [0;35m"height"[0m => [0;36m16[0m,
+                  [0;35m"height"[0m => [0;36m16[0m
                 },
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_32.png"[0m,
                   [0;35m"width"[0m => [0;36m32[0m,
-                  [0;35m"height"[0m => [0;36m32[0m,
+                  [0;35m"height"[0m => [0;36m32[0m
                 },
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_48.png"[0m,
                   [0;35m"width"[0m => [0;36m48[0m,
-                  [0;35m"height"[0m => [0;36m48[0m,
+                  [0;35m"height"[0m => [0;36m48[0m
                 },
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_64.png"[0m,
                   [0;35m"width"[0m => [0;36m64[0m,
-                  [0;35m"height"[0m => [0;36m64[0m,
+                  [0;35m"height"[0m => [0;36m64[0m
                 },
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_128.png"[0m,
                   [0;35m"width"[0m => [0;36m128[0m,
-                  [0;35m"height"[0m => [0;36m128[0m,
-                },
+                  [0;35m"height"[0m => [0;36m128[0m
+                }
               ],
               [0;35m"icon_width"[0m => [0;36m512[0m,
               [0;35m"static_icon_width"[0m => [0;36m512[0m,
@@ -183,35 +183,35 @@
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_16.png"[0m,
                   [0;35m"width"[0m => [0;36m16[0m,
-                  [0;35m"height"[0m => [0;36m16[0m,
+                  [0;35m"height"[0m => [0;36m16[0m
                 },
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_32.png"[0m,
                   [0;35m"width"[0m => [0;36m32[0m,
-                  [0;35m"height"[0m => [0;36m32[0m,
+                  [0;35m"height"[0m => [0;36m32[0m
                 },
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_48.png"[0m,
                   [0;35m"width"[0m => [0;36m48[0m,
-                  [0;35m"height"[0m => [0;36m48[0m,
+                  [0;35m"height"[0m => [0;36m48[0m
                 },
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_64.png"[0m,
                   [0;35m"width"[0m => [0;36m64[0m,
-                  [0;35m"height"[0m => [0;36m64[0m,
+                  [0;35m"height"[0m => [0;36m64[0m
                 },
                 {
                   [0;35m"url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_128.png"[0m,
                   [0;35m"width"[0m => [0;36m128[0m,
-                  [0;35m"height"[0m => [0;36m128[0m,
-                },
+                  [0;35m"height"[0m => [0;36m128[0m
+                }
               ],
               [0;35m"icon_format"[0m => [1;31mnil[0m,
               [0;35m"icon_height"[0m => [0;36m512[0m,
               [0;35m"penny_price"[0m => [1;31mnil[0m,
               [0;35m"award_type"[0m => [0;35m"global"[0m,
-              [0;35m"static_icon_url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_512.png"[0m,
-            },
+              [0;35m"static_icon_url"[0m => [0;35m"https://www.redditstatic.com/gold/awards/icon/silver_512.png"[0m
+            }
           ],
           [0;35m"awarders"[0m => [],
           [0;35m"media_only"[0m => [0;31mfalse[0m,
@@ -251,10 +251,10 @@
           [0;35m"created_utc"[0m => [0;36m1657471841[0m,
           [0;35m"num_crossposts"[0m => [0;36m0[0m,
           [0;35m"media"[0m => [1;31mnil[0m,
-          [0;35m"is_video"[0m => [0;31mfalse[0m,
-        },
-      },
+          [0;35m"is_video"[0m => [0;31mfalse[0m
+        }
+      }
     ],
-    [0;35m"before"[0m => [1;31mnil[0m,
-  },
+    [0;35m"before"[0m => [1;31mnil[0m
+  }
 }

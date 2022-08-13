@@ -42,6 +42,12 @@ module RubyFormatter
           buf << indent << key.inspect.colourise_obj(key) << hash_rocket << pretty_please(value) << "," << newline
         end
 
+        # remove last newline ("\n" or "") and ","
+        buf.pop
+        buf.pop
+        # add the newline again
+        buf << newline
+
         self.level -= 1
         buf << indent << "}"
       when Array
@@ -52,6 +58,12 @@ module RubyFormatter
         obj.each do |elem|
           buf << indent << pretty_please(elem) << "," << newline
         end
+
+        # remove last newline ("\n" or "") and ","
+        buf.pop
+        buf.pop
+        # add the newline again
+        buf << newline
 
         self.level -= 1
         buf << indent << "]"

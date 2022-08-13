@@ -55,7 +55,7 @@
           "author_flair_css_class" => nil,
           "author_flair_richtext" => [],
           "gildings" => {
-            "gid_1" => 1,
+            "gid_1" => 1
           },
           "post_hint" => "image",
           "content_categories" => nil,
@@ -86,45 +86,45 @@
                 "source" => {
                   "url" => "https://preview.redd.it/gswx30l8tra91.jpg?auto=webp&amp;s=60addc8825f960bd6cbc4191943c72844f06ef3a",
                   "width" => 1140,
-                  "height" => 500,
+                  "height" => 500
                 },
                 "resolutions" => [
                   {
                     "url" => "https://preview.redd.it/gswx30l8tra91.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;s=b3f109e2780dfca0f3ab7ac4c3198271097e03b3",
                     "width" => 108,
-                    "height" => 47,
+                    "height" => 47
                   },
                   {
                     "url" => "https://preview.redd.it/gswx30l8tra91.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;s=dd277a0ab4023f28b97ea775999373a266071dba",
                     "width" => 216,
-                    "height" => 94,
+                    "height" => 94
                   },
                   {
                     "url" => "https://preview.redd.it/gswx30l8tra91.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;s=61c22b6fc2533ec790303210376ac22694e7b222",
                     "width" => 320,
-                    "height" => 140,
+                    "height" => 140
                   },
                   {
                     "url" => "https://preview.redd.it/gswx30l8tra91.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=1ddb593eef41c807a59eb03aff2e7e2f5f0a68b0",
                     "width" => 640,
-                    "height" => 280,
+                    "height" => 280
                   },
                   {
                     "url" => "https://preview.redd.it/gswx30l8tra91.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;s=a75d6b2d7cdf2e19422649635cc8320ca5ee732a",
                     "width" => 960,
-                    "height" => 421,
+                    "height" => 421
                   },
                   {
                     "url" => "https://preview.redd.it/gswx30l8tra91.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;s=d1da16231ef8a3043f26b32698ba8fb27813f846",
                     "width" => 1080,
-                    "height" => 473,
-                  },
+                    "height" => 473
+                  }
                 ],
                 "variants" => {},
-                "id" => "FuhO2NwjwEUs0lv3I0Z-FBNcw5DLTMnmdMhYefVenXE",
-              },
+                "id" => "FuhO2NwjwEUs0lv3I0Z-FBNcw5DLTMnmdMhYefVenXE"
+              }
             ],
-            "enabled" => true,
+            "enabled" => true
           },
           "all_awardings" => [
             {
@@ -144,28 +144,28 @@
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_16.png",
                   "width" => 16,
-                  "height" => 16,
+                  "height" => 16
                 },
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_32.png",
                   "width" => 32,
-                  "height" => 32,
+                  "height" => 32
                 },
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_48.png",
                   "width" => 48,
-                  "height" => 48,
+                  "height" => 48
                 },
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_64.png",
                   "width" => 64,
-                  "height" => 64,
+                  "height" => 64
                 },
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_128.png",
                   "width" => 128,
-                  "height" => 128,
-                },
+                  "height" => 128
+                }
               ],
               "icon_width" => 512,
               "static_icon_width" => 512,
@@ -183,35 +183,35 @@
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_16.png",
                   "width" => 16,
-                  "height" => 16,
+                  "height" => 16
                 },
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_32.png",
                   "width" => 32,
-                  "height" => 32,
+                  "height" => 32
                 },
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_48.png",
                   "width" => 48,
-                  "height" => 48,
+                  "height" => 48
                 },
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_64.png",
                   "width" => 64,
-                  "height" => 64,
+                  "height" => 64
                 },
                 {
                   "url" => "https://www.redditstatic.com/gold/awards/icon/silver_128.png",
                   "width" => 128,
-                  "height" => 128,
-                },
+                  "height" => 128
+                }
               ],
               "icon_format" => nil,
               "icon_height" => 512,
               "penny_price" => nil,
               "award_type" => "global",
-              "static_icon_url" => "https://www.redditstatic.com/gold/awards/icon/silver_512.png",
-            },
+              "static_icon_url" => "https://www.redditstatic.com/gold/awards/icon/silver_512.png"
+            }
           ],
           "awarders" => [],
           "media_only" => false,
@@ -251,10 +251,10 @@
           "created_utc" => 1657471841,
           "num_crossposts" => 0,
           "media" => nil,
-          "is_video" => false,
-        },
-      },
+          "is_video" => false
+        }
+      }
     ],
-    "before" => nil,
-  },
+    "before" => nil
+  }
 }
