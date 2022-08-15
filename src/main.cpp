@@ -4,8 +4,8 @@
 #include <iostream>
 #include <iterator>
 #include <string_view>
-#include <vector>
 #include <unistd.h>
+#include <vector>
 
 #include "expressionwrapper.h"
 #include "mruby++.h"
@@ -164,7 +164,8 @@ void print_usage(std::ostream& stream = std::cout)
                   supported formats: json (default), ruby, plain
   -r              output raw texts, same as '-o plain'
   -v              print the version number
-  -h              show this message)" << std::endl;
+  -h              show this message)"
+           << std::endl;
 }
 
 class NullBuffer : public std::streambuf
@@ -248,7 +249,7 @@ int main(int argc, char** argv)
             return EXIT_FAILURE;
         }
     }
-    catch (const std::exception &ex)
+    catch (const std::exception& ex)
     {
         std::cerr << "rj: " << ex.what() << std::endl << std::endl;
         print_usage(std::cerr);

@@ -83,4 +83,3 @@ mrb_sym Interpreter::symbol(std::string_view name)
 }
 
 }
-
