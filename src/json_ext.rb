@@ -1,3 +1,11 @@
+# This file is part of rj
+#
+# Based on code from mruby-iijson
+#
+# SPDX-FileCopyrightText: 2014-2018 Internet Initiative Japan Inc.
+# SPDX-FileCopyrightText: 2022 Georg Gadinger <nilsding@nilsding.org>
+# SPDX-License-Identifier: MIT
+
 module JSON
   # based on:
   # https://github.com/iij/mruby-iijson/blob/c5e730c30090d3cddae258f57ab9508edb3e9fce/mrblib/json.rb#L28

@@ -1,3 +1,8 @@
+# This file is part of rj
+#
+# SPDX-FileCopyrightText: 2022 Georg Gadinger <nilsding@nilsding.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 module RubyFormatter
   def self.generate(item, pretty_print: false, indent_width: 2)
     Formatter.new(item, pretty_print:, indent_width:).pretty_please

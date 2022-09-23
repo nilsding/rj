@@ -1,3 +1,10 @@
+/*
+    This file is part of rj
+
+    SPDX-FileCopyrightText: 2022 Georg Gadinger <nilsding@nilsding.org>
+    SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
 #include "expressionwrapper.h"
 
 std::string ExpressionWrapper::wrap(std::string_view expr)
