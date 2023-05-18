@@ -1,1 +1,1 @@
-{"colour":false,"compact":true,"debug":false,"output_format":"json","ruby":"mruby 3.1.0 (2022-05-12)"}
+{"colour":false,"compact":true,"debug":false,"output_format":"json","ruby":"mruby 3.2.0 (2023-02-24)"}

@@ -8,8 +8,8 @@ include(FeatureSummary)
 include(ExternalProject)
 ExternalProject_Add(
   mruby
-  URL https://github.com/mruby/mruby/archive/3.1.0.tar.gz
-  URL_HASH SHA512=b3699587689709b7411105ef468c28a6d89941dea356e6b3272b6ba1f69dc2d59e9c1ebc56c55208adc8b2ba878e21c8961ddd4603781748070fc78b6c2bbdb2
+  URL https://github.com/mruby/mruby/archive/3.2.0.tar.gz
+  URL_HASH SHA512=bb46fa0eda6507cabe775e3f9cceec6da64d5a96c20e704e7ada94f5b4906989553c363cfd85789c4adcb030a6cfd36b8a99d8247f32687c913bbe06edb9bbca
   CONFIGURE_COMMAND
     ""
   BUILD_COMMAND

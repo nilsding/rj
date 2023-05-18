@@ -26,7 +26,7 @@ return unless ENV.key?("UNIVERSAL_BUILD")
 # Hack to fix the preprocessor command in universal builds:
 
 class MRuby::Command::Compiler
-  # https://github.com/mruby/mruby/blob/3.1.0/lib/mruby/build/command.rb#L87-L100
+  # https://github.com/mruby/mruby/blob/3.2.0/lib/mruby/build/command.rb#L83-L96
   def run(outfile, infile, _defines=[], _include_paths=[], _flags=[])
     mkdir_p File.dirname(outfile)
     flags = all_flags(_defines, _include_paths, _flags)

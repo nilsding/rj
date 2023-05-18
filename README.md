@@ -35,7 +35,7 @@ tool_that_emits_json | rj '.map { |item| { one: item.foo, two: item.bar.name } }
 for building:
 - CMake
 - Ruby 2.5 or later
-- [whatever else mruby 3.1.0 needs][mruby_deps] :^)
+- [whatever else mruby 3.2.0 needs][mruby_deps] :^)
 
 ## Building
 
@@ -53,4 +53,4 @@ ruby ./test/rj_test.rb
 ./build/src/rj
 ```
 
-[mruby_deps]: https://github.com/mruby/mruby/blob/3.1.0/doc/guides/compile.md#prerequisites
+[mruby_deps]: https://github.com/mruby/mruby/blob/3.2.0/doc/guides/compile.md#prerequisites
