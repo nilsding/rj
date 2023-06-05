@@ -83,9 +83,9 @@ class RjTest < ::Minitest::Test
         end
       end
 
-      assert_equal rj.status, status, ["exit status", msg].compact.join(": ")
-      assert_equal rj.stderr, stderr, ["stderr", msg].compact.join(": ")
-      assert_equal rj.stdout, stdout, ["stdout", msg].compact.join(": ")
+      assert_equal status, rj.status, ["exit status", msg].compact.join(": ")
+      assert_equal stderr, rj.stderr, ["stderr", msg].compact.join(": ")
+      assert_equal stdout, rj.stdout, ["stdout", msg].compact.join(": ")
     end
   end
 end
