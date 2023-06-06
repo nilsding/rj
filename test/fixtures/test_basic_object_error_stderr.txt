@@ -1,4 +1,4 @@
-rj: expression '.unknown_method' failed to run:
+rj: expression ".unknown_method" failed to run:
 trace (most recent call last):
 	[1] (unknown):0
 (unknown):0:in method_missing: undefined method 'unknown_method' (NoMethodError)

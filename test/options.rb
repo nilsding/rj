@@ -19,11 +19,6 @@ class Options < RjTest
       stdout: :test_options_help,
       msg: "getting help is more important"
 
-  rj_test! :combined_help_version,
-      argv: ["-vh"],
-      stdout: :test_options_help,
-      msg: "getting help is more important"
-
   rj_test! :separate_long_help_version,
       argv: ["--version", "--help"],
       stdout: :test_options_help,

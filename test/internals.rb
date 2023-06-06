@@ -43,15 +43,4 @@ class Internals < RjTest
       stdin:  "{}",
       stdout: :from_fixture,
       stderr: :test_internals_debug
-
-  rj_test! :compact_debug_combined,
-      argv: [
-        '-cd',
-        '--',
-        'Rj.__debug_info',
-      ],
-      stdin:  "{}",
-      stdout: :test_internals_compact_debug,
-      stderr: :test_internals_debug
-
 end

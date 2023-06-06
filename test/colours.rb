@@ -66,8 +66,8 @@ class Colours < RjTest
 
   rj_test! :ruby_symbols_and_other_classes,
       argv: [
-        "-Co",
-        "ruby",
+        "-C",
+        "-oruby",
         '{:symbol => true, "class" => String.class, method: Rj.method(:__debug_info)}'
       ],
       stdin:  "{}",
@@ -75,8 +75,9 @@ class Colours < RjTest
 
   rj_test! :ruby_symbols_and_other_classes_compact,
       argv: [
-        "-Cco",
-        "ruby",
+        "-C",
+        "-c",
+        "-oruby",
         '{:symbol => true, "class" => String.class, method: Rj.method(:__debug_info)}'
       ],
       stdin:  "{}",

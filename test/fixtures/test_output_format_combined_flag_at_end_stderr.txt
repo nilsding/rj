@@ -1,4 +1,0 @@
-loading Rj class
-reading from stdin
-running 0 expressions
-printing item

@@ -6,7 +6,7 @@
 require 'open3'
 
 class RjRunner
-  RJ_BIN = ENV["RJ_BIN"] || File.expand_path("../../build/src/rj", __dir__)
+  RJ_BIN = ENV["RJ_BIN"] || File.expand_path("../../bin/rj", __dir__)
 
   attr_reader :argv, :stdin, :stdout, :stderr, :status
 

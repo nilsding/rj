@@ -33,24 +33,21 @@ tool_that_emits_json | rj '.map { |item| { one: item.foo, two: item.bar.name } }
 ## Requirements
 
 for building:
-- CMake
-- Ruby 2.5 or later
+- Crystal 1.8+
+- Ruby 3.1 or later
 - [whatever else mruby 3.2.0 needs][mruby_deps] :^)
 
 ## Building
 
 ```sh
-# configure it
-cmake --preset dev
-
-# compile it
-cmake --build --preset dev
+# does everything, use the `build_release` for an optimised build
+rake build
 
 # test it
 ruby ./test/rj_test.rb
 
 # run it
-./build/src/rj
+./bin/rj
 ```
 
 [mruby_deps]: https://github.com/mruby/mruby/blob/3.2.0/doc/guides/compile.md#prerequisites

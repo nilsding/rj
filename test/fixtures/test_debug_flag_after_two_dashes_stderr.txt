@@ -1,2 +1,2 @@
-rj: expression '-d' failed to run:
+rj: expression "-d" failed to run:
 (unknown):0: undefined method 'd' (NoMethodError)

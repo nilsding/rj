@@ -45,31 +45,13 @@ class OutputFormat < RjTest
       stderr: :from_fixture,
       msg: '-o needs an argument'
 
-  rj_test! :combined_flag_at_start,
-      argv: [
-        '-od',
-        'ruby'
-      ],
-      status: 1,
-      stderr: :from_fixture,
-      msg: '-o needs to be the last one'
-
-  rj_test! :combined_flag_at_end,
-      argv: [
-        '-do',
-        'ruby',
-      ],
-      stdin:  :basic_array,
-      stdout: :test_output_format_ruby,
-      stderr: :from_fixture
-
   rj_test! :combined_arg,
       argv: [
         '-oruby',
       ],
-      status: 1,
-      stderr: :test_output_format_combined_flag_at_start,
-      msg: 'format parameter needs to be its own argument'
+      stdin:  :basic_array,
+      stdout: :test_output_format_ruby,
+      msg: "format parameter doesn't need a space inbetween"
   # END flag handling ========================================================
 
   # BEGIN flag handling for '-r' =============================================

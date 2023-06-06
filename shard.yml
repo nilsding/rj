@@ -1,0 +1,15 @@
+---
+name: rj
+version: "0.5.0"
+
+authors:
+  - "Georg Gadinger <nilsding@nilsding.org>"
+
+description: |
+  like `jq` but with Ruby expressions
+
+targets:
+  rj:
+    main: "src/main.cr"
+
+license: GPLv3
