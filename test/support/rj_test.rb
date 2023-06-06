@@ -32,60 +32,70 @@ class RjTest < ::Minitest::Test
       .gsub(/^Test|Test$/, '') # get rid of "Test" in the class name
       .gsub(/(.)([A-Z])/, '\1_\2')
       .downcase
-    define_method :"test_#{underscored_class_name}_#{name}" do
-      if ENV["OUTPUT_ONLY"]
-        puts "\033[34;1m"
-        header = "Test: #{__method__} "
-        header += ('=' * (79 - header.length))
-        puts header
-      end
-      stdin = JsonFixtures.fetch(stdin) if stdin.is_a?(Symbol)
+    original_location = caller_locations(1, 1).first
+    class_eval <<~RUBY, original_location.path, original_location.lineno
+      def test_#{underscored_class_name}_#{name}
+        argv = #{argv.inspect}
+        stdin = #{stdin.inspect}
+        status = #{status.inspect}
+        stderr = #{stderr.inspect}
+        stdout = #{stdout.inspect}
+        msg = #{msg.inspect}
 
-      unless ENV["RECORD"] || ENV["OUTPUT_ONLY"]
-        stderr = StderrFixtures.fetch(__method__) if stderr == :from_fixture
-        stderr = StderrFixtures.fetch(stderr) if stderr.is_a?(Symbol)
-
-        stdout = StdoutFixtures.fetch(__method__) if stdout == :from_fixture
-        stdout = StdoutFixtures.fetch(stdout) if stdout.is_a?(Symbol)
-      end
-
-      if ENV["OUTPUT_ONLY"]
-        print "\033[0mRunning:\033[32;1m "
-        print "rj \033[35;1m"
-        puts argv.join(" ")
-      end
-      rj = RjRunner.new(argv: argv, stdin: stdin)
-      rj.run
-
-      if ENV["OUTPUT_ONLY"]
-        puts "\033[0mstderr:\033[31;1m"
-        puts rj.stderr
-        puts "\033[0mstdout:\033[33;1m"
-        puts rj.stdout
-        puts "\033[0mexit status: #{rj.status}"
-        puts
-        puts
-        return
-      end
-
-      if ENV["RECORD"]
-        if stderr == :from_fixture
-          File.open(File.expand_path("../fixtures/#{__method__}_stderr.txt", __dir__), 'w') do |f|
-            f.write rj.stderr
-          end
-          stderr = rj.stderr
+        if ENV["OUTPUT_ONLY"]
+          puts "\033[34;1m"
+          header = "Test: \#{__method__} "
+          header += ('=' * (79 - header.length))
+          puts header
         end
-        if stdout == :from_fixture
-          File.open(File.expand_path("../fixtures/#{__method__}_stdout.txt", __dir__), 'w') do |f|
-            f.write rj.stdout
-          end
-          stdout = rj.stdout
-        end
-      end
+        stdin = JsonFixtures.fetch(stdin) if stdin.is_a?(Symbol)
 
-      assert_equal status, rj.status, ["exit status", msg].compact.join(": ")
-      assert_equal stderr, rj.stderr, ["stderr", msg].compact.join(": ")
-      assert_equal stdout, rj.stdout, ["stdout", msg].compact.join(": ")
-    end
+        unless ENV["RECORD"] || ENV["OUTPUT_ONLY"]
+          stderr = StderrFixtures.fetch(__method__) if stderr == :from_fixture
+          stderr = StderrFixtures.fetch(stderr) if stderr.is_a?(Symbol)
+
+          stdout = StdoutFixtures.fetch(__method__) if stdout == :from_fixture
+          stdout = StdoutFixtures.fetch(stdout) if stdout.is_a?(Symbol)
+        end
+
+        if ENV["OUTPUT_ONLY"]
+          print "\033[0mRunning:\033[32;1m "
+          print "rj \033[35;1m"
+          puts argv.join(" ")
+        end
+        rj = RjRunner.new(argv: argv, stdin: stdin)
+        rj.run
+
+        if ENV["OUTPUT_ONLY"]
+          puts "\033[0mstderr:\033[31;1m"
+          puts rj.stderr
+          puts "\033[0mstdout:\033[33;1m"
+          puts rj.stdout
+          puts "\033[0mexit status: \#{rj.status}"
+          puts
+          puts
+          return
+        end
+
+        if ENV["RECORD"]
+          if stderr == :from_fixture
+            File.open(File.expand_path("./fixtures/\#{__method__}_stderr.txt", __dir__), 'w') do |f|
+              f.write rj.stderr
+            end
+            stderr = rj.stderr
+          end
+          if stdout == :from_fixture
+            File.open(File.expand_path("./fixtures/\#{__method__}_stdout.txt", __dir__), 'w') do |f|
+              f.write rj.stdout
+            end
+            stdout = rj.stdout
+          end
+        end
+
+        assert_equal status, rj.status, ["exit status", msg].compact.join(": ")
+        assert_equal stderr, rj.stderr, ["stderr", msg].compact.join(": ")
+        assert_equal stdout, rj.stdout, ["stdout", msg].compact.join(": ")
+      end
+    RUBY
   end
 end
